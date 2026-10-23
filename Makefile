@@ -1,4 +1,5 @@
-.PHONY: setup test lint sim build dbt-test models scorecard criteo api web web-test
+# Fresh clone → running app (needs uv and Node 20+). Model runs are committed, so no fitting.
+.PHONY: demo setup test lint sim build dbt-test models scorecard criteo api web web-test
 
 ROOT := $(abspath .)
 export ATLAS_HALDEN_DIR ?= $(ROOT)/data/synthetic/halden
@@ -8,6 +9,9 @@ export DBT_PROFILES_DIR := $(ROOT)/dbt
 # GA4 models are enabled when the validated extracts exist (checked in the shell, because
 # make's $(wildcard) breaks on paths containing spaces).
 GA4_VARS = $$(test -f "$(ATLAS_GA4_DIR)/manifest.json" && echo '--vars={"ga4_enabled":true}')
+
+demo:
+	./scripts/demo.sh
 
 setup:
 	uv sync --python 3.12
