@@ -38,10 +38,16 @@ def test_no_negative_or_missing_values(world):
 
 
 def test_spend_matches_budget(world):
-    for c in world.config.channels:
-        spent = world.media.loc[world.media.channel == c.name, "spend"].sum()
+    """Effective spend hits the budget; billed spend differs only by the CPC-spike inflation."""
+    H = np.s_[world.burn_in:]
+    for i, c in enumerate(world.config.channels):
+        effective = world.spend[i][:, H].sum()
         expected = c.annual_spend * (world.config.n_weeks - c.launch_week) / 52
-        assert spent == pytest.approx(expected, rel=1e-9)
+        assert effective == pytest.approx(expected, rel=1e-9)
+        billed = world.media.loc[world.media.channel == c.name, "spend"].sum()
+        assert billed == pytest.approx(world.billed_spend[i][:, H].sum(), rel=1e-9)
+        if c.name != "search_nonbrand":
+            assert billed == pytest.approx(expected, rel=1e-9)
 
 
 def test_launch_week_respected(world):
