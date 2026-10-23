@@ -1,4 +1,4 @@
-.PHONY: setup test lint sim build dbt-test models scorecard criteo
+.PHONY: setup test lint sim build dbt-test models scorecard criteo api
 
 ROOT := $(abspath .)
 export ATLAS_HALDEN_DIR ?= $(ROOT)/data/synthetic/halden
@@ -36,3 +36,6 @@ scorecard:
 
 criteo:
 	uv run python -m atlas.criteo run --delete-raw
+
+api:
+	uv run uvicorn atlas.api.app:app --reload --port 8000
