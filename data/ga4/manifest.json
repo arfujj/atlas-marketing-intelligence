@@ -1,0 +1,44 @@
+{
+  "label": "OBSERVED \u2014 Google Merchandise Store, GA4 obfuscated sample (bigquery-public-data.ga4_obfuscated_sample_ecommerce). Obfuscated by Google; traffic_source = first-user acquisition source.",
+  "extracted_at": "2026-10-23T14:35:39+00:00",
+  "tables": {
+    "sessions": {
+      "rows": 360129,
+      "bytes_processed": 1891993633,
+      "sql_sha256": "8ffbc8882839fd96"
+    },
+    "purchase_events": {
+      "rows": 5692,
+      "bytes_processed": 1261863299,
+      "sql_sha256": "c1964cedda61023d"
+    },
+    "purchase_items": {
+      "rows": 16003,
+      "bytes_processed": 483717328,
+      "sql_sha256": "95ff91a7e0872e35"
+    },
+    "item_funnel_daily": {
+      "rows": 10381,
+      "bytes_processed": 267547218,
+      "sql_sha256": "cf4b6dee731d9335"
+    },
+    "events_daily": {
+      "rows": 1465,
+      "bytes_processed": 187715874,
+      "sql_sha256": "19ff9d469e43a1e9"
+    },
+    "totals": {
+      "rows": 1,
+      "bytes_processed": 1046343899,
+      "sql_sha256": "527803ccfbd0a4f4"
+    }
+  },
+  "totals": {
+    "events": 4295584,
+    "users": 270154,
+    "sessions": 360129,
+    "transactions": 4452,
+    "min_date": "20201101",
+    "max_date": "20210131"
+  }
+}
