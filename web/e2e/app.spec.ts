@@ -48,3 +48,11 @@ test("evidence hides the truth until asked", async ({ page }) => {
   await expect(page.getByText("True ROI", { exact: true })).toBeVisible();
   await expect(page.getByText("What each method's plan would really earn")).toBeVisible();
 });
+
+test("allowing underspend never spends more than the budget and says how much it keeps", async ({ page }) => {
+  await page.goto("/halden/decision");
+  await expect(page.getByText("The budget is larger than the model can spend profitably")).toBeVisible();
+  await page.getByLabel("Allow spending less than the budget").check();
+  await page.getByRole("button", { name: "Re-optimise" }).click();
+  await expect(page.getByText(/The most profitable plan spends \$[\d.]+K of the \$500K available/)).toBeVisible();
+});

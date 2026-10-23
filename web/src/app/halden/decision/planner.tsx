@@ -18,13 +18,15 @@ export function Planner({ initial }: { initial: OptimizationResult }) {
   const [objective, setObjective] = useState(initial.objective);
   const [cm, setCm] = useState(initial.economics.cm_rate);
   const [rep, setRep] = useState(initial.economics.repeat_multiplier);
+  const [spendAll, setSpendAll] = useState(initial.spend_all);
   const [error, setError] = useState<string | null>(null);
   const [pending, start] = useTransition();
   const dirty =
     budget !== res.budget ||
     objective !== res.objective ||
     cm !== res.economics.cm_rate ||
-    rep !== res.economics.repeat_multiplier;
+    rep !== res.economics.repeat_multiplier ||
+    spendAll !== res.spend_all;
 
   function run() {
     start(async () => {
@@ -32,7 +34,7 @@ export function Planner({ initial }: { initial: OptimizationResult }) {
       const r = await fetch("/api/optimize", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ budget, objective, cm_rate: cm, repeat_multiplier: rep }),
+        body: JSON.stringify({ budget, objective, cm_rate: cm, repeat_multiplier: rep, spend_all: spendAll }),
       });
       const body = await r.json();
       if (!r.ok) {
@@ -49,6 +51,14 @@ export function Planner({ initial }: { initial: OptimizationResult }) {
   const up = res.uplift[o];
   const outside = res.channels.filter((c) => c.outside_observed_range);
   const unit = o === "revenue" ? "revenue" : "profit";
+  const spent = res.channels.reduce((s, c) => s + c.proposed, 0);
+  const be = res.break_even_mroi;
+  // Channels pushed above their floor although their last dollar earns less than break-even:
+  // only the spend-all constraint puts money there.
+  const forced =
+    res.spend_all && be != null && Number.isFinite(be)
+      ? res.channels.filter((c) => c.proposed > c.min + 1 && c.mroi_proposed.mean < be)
+      : [];
 
   return (
     <div className="flex flex-col gap-5">
@@ -93,6 +103,10 @@ export function Planner({ initial }: { initial: OptimizationResult }) {
           </span>
           <input type="number" min={0} max={5} step="any" value={Number(rep.toFixed(3))} onChange={(e) => setRep(Number(e.target.value))} className="w-24 rounded border border-line bg-surface px-2 py-1.5 text-sm text-ink tnum" />
         </label>
+        <label className="flex items-center gap-2 self-center text-ink-2">
+          <input type="checkbox" checked={!spendAll} onChange={(e) => setSpendAll(!e.target.checked)} />
+          Allow spending less than the budget
+        </label>
         <button disabled={pending || !dirty} className="rounded bg-accent px-4 py-2 text-sm font-medium text-white disabled:opacity-40">
           {pending ? "Optimising…" : "Re-optimise"}
         </button>
@@ -116,6 +130,19 @@ export function Planner({ initial }: { initial: OptimizationResult }) {
         </div>
       </div>
 
+      {forced.length > 0 && (
+        <p className="rounded-md border-l-2 bg-surface-2 px-3 py-2 text-xs leading-relaxed text-ink-2" style={{ borderColor: "var(--status-serious)" }}>
+          The budget is larger than the model can spend profitably. The last dollars in {forced.map((c) => channelLabel(c.channel)).join(", ")} return
+          less than break-even ({ratio(be, 2)}); they are there only because the whole budget must be spent. Tick &ldquo;Allow spending less&rdquo; to see the
+          most profitable level.
+        </p>
+      )}
+      {!res.spend_all && spent < res.budget - 1 && (
+        <p className="text-xs text-ink-2">
+          The most profitable plan spends {money(spent, { compact: true })} of the {money(res.budget, { compact: true })} available; every channel stops where
+          its next dollar would drop below break-even or at its floor.
+        </p>
+      )}
       {outside.length > 0 && (
         <p className="text-xs text-bad">
           ⚠ {outside.map((c) => channelLabel(c.channel)).join(", ")}: recommended weekly spend is outside anything observed in the history.
