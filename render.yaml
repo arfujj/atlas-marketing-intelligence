@@ -1,0 +1,20 @@
+# Render Blueprint: New → Blueprint → pick this repo. Both services build from the Dockerfiles.
+# Free instances sleep when idle; the first request after a sleep takes ~1 minute.
+services:
+  - type: web
+    name: atlas-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+  - type: web
+    name: atlas-web
+    runtime: docker
+    plan: free
+    dockerfilePath: ./web/Dockerfile
+    dockerContext: ./web
+    envVars:
+      # The API's public URL, e.g. https://atlas-api-xxxx.onrender.com (Render asks for it once).
+      - key: ATLAS_API_URL
+        sync: false
