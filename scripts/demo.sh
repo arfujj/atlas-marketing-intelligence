@@ -16,7 +16,7 @@ for p in "$API_PORT" "$WEB_PORT"; do
   fi
 done
 
-echo "→ Python environment";            make -s setup >/dev/null
+echo "→ Python environment";            make -s setup >/dev/null 2>&1 || { echo "✗ uv sync failed; run make setup to see why"; exit 1; }
 echo "→ Simulating Halden and building the warehouse (dbt)"; make -s build >/dev/null
 echo "→ Web dependencies";               (cd web && npm ci --silent --no-audit --no-fund)
 echo "→ Production web build";           (cd web && npx next build >/dev/null)

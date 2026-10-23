@@ -14,7 +14,7 @@ demo:
 	./scripts/demo.sh
 
 setup:
-	uv sync --python 3.12
+	uv sync --python 3.12 --all-extras
 
 test:
 	uv run pytest

@@ -146,25 +146,31 @@ name = "atlas"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "arviz" },
-    { name = "dbt-duckdb" },
     { name = "duckdb" },
     { name = "fastapi" },
-    { name = "httpx" },
     { name = "numpy" },
-    { name = "nutpie" },
     { name = "pandas" },
     { name = "pyarrow" },
     { name = "pydantic" },
-    { name = "pymc" },
     { name = "pyyaml" },
+    { name = "uvicorn" },
+]
+
+[package.optional-dependencies]
+models = [
+    { name = "arviz" },
+    { name = "nutpie" },
+    { name = "pymc" },
     { name = "scikit-learn" },
     { name = "scipy" },
-    { name = "uvicorn" },
+]
+warehouse = [
+    { name = "dbt-duckdb" },
 ]
 
 [package.dev-dependencies]
 dev = [
+    { name = "httpx" },
     { name = "hypothesis" },
     { name = "pytest" },
     { name = "ruff" },
@@ -172,25 +178,26 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "arviz", specifier = ">=0.19" },
-    { name = "dbt-duckdb", specifier = ">=1.8" },
+    { name = "arviz", marker = "extra == 'models'", specifier = ">=0.19" },
+    { name = "dbt-duckdb", marker = "extra == 'warehouse'", specifier = ">=1.8" },
     { name = "duckdb", specifier = ">=1.1" },
     { name = "fastapi", specifier = ">=0.115" },
-    { name = "httpx", specifier = ">=0.27" },
     { name = "numpy", specifier = ">=2.0" },
-    { name = "nutpie", specifier = ">=0.13" },
+    { name = "nutpie", marker = "extra == 'models'", specifier = ">=0.13" },
     { name = "pandas", specifier = ">=2.2" },
     { name = "pyarrow", specifier = ">=16" },
     { name = "pydantic", specifier = ">=2.7" },
-    { name = "pymc", specifier = ">=5.16" },
+    { name = "pymc", marker = "extra == 'models'", specifier = ">=5.16" },
     { name = "pyyaml", specifier = ">=6" },
-    { name = "scikit-learn", specifier = ">=1.5" },
-    { name = "scipy", specifier = ">=1.13" },
+    { name = "scikit-learn", marker = "extra == 'models'", specifier = ">=1.5" },
+    { name = "scipy", marker = "extra == 'models'", specifier = ">=1.13" },
     { name = "uvicorn", specifier = ">=0.30" },
 ]
+provides-extras = ["warehouse", "models"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "httpx", specifier = ">=0.27" },
     { name = "hypothesis", specifier = ">=6.100" },
     { name = "pytest", specifier = ">=8" },
     { name = "ruff", specifier = ">=0.6" },

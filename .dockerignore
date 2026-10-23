@@ -1,0 +1,14 @@
+.git
+.venv
+.claude
+**/__pycache__
+.pytest_cache
+.ruff_cache
+.hypothesis
+logs
+data/raw
+data/synthetic
+data/serving
+dbt/target
+dbt/logs
+web

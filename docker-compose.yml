@@ -1,0 +1,17 @@
+# Local production-like stack: `docker compose up --build`, then open http://localhost:3000 (WEB_PORT / API_PORT override)
+services:
+  api:
+    build: .
+    ports: ["${API_PORT:-8000}:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 5s
+      retries: 20
+  web:
+    build: ./web
+    environment:
+      ATLAS_API_URL: http://api:8000
+    ports: ["${WEB_PORT:-3000}:3000"]
+    depends_on:
+      api:
+        condition: service_healthy
