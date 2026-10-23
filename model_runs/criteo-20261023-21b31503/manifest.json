@@ -1,0 +1,20 @@
+{
+  "run_id": "criteo-20261023-21b31503",
+  "kind": "criteo",
+  "evidence_type": "Experimental",
+  "created_at": "2026-10-23T14:57:56+00:00",
+  "wall_seconds": 192.2,
+  "git_sha": "c49ccdd",
+  "config": {
+    "seed": 20261023,
+    "train_rows": 2000000,
+    "test_frac": 0.3,
+    "eval_rows": 2000000,
+    "n_boot": 200,
+    "n_rows": 13979592
+  },
+  "outputs": {
+    "readout": "readout.json"
+  },
+  "note": "Aggregated results only; raw Criteo rows are never committed."
+}

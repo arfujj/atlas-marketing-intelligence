@@ -1,0 +1,24 @@
+{
+  "run_id": "halden-20261023-455a5143",
+  "kind": "halden",
+  "evidence_type": "Simulated",
+  "created_at": "2026-10-23T15:13:41+00:00",
+  "wall_seconds": 136.8,
+  "git_sha": "c49ccdd",
+  "config": {
+    "seed": 20261023,
+    "draws": 2000,
+    "tune": 2000,
+    "chains": 4,
+    "budget": 500000.0,
+    "objective": "profit_52w",
+    "mmm_runs": {
+      "bayes_default": "mmm-halden-dc8353b0",
+      "bayes_dag": "mmm-halden-8a85883e",
+      "bayes_dag_calibrated": "mmm-halden-6a9bb005"
+    }
+  },
+  "outputs": {
+    "summary": "summary.json"
+  }
+}

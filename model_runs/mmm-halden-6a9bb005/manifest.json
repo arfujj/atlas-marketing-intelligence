@@ -1,0 +1,131 @@
+{
+  "run_id": "mmm-halden-6a9bb005",
+  "kind": "mmm",
+  "evidence_type": "Modeled",
+  "created_at": "2026-10-23T15:13:25+00:00",
+  "wall_seconds": 0.0,
+  "git_sha": "c49ccdd",
+  "config": {
+    "variant": "bayes_dag_calibrated",
+    "n_train": 156,
+    "n_weeks": 156,
+    "seed": 20261023,
+    "world": {
+      "seed": 20261023,
+      "company": "Halden Coffee Works (fictional)",
+      "config_fingerprint": "3a0f5cac8c912189"
+    },
+    "lift_tests": [
+      {
+        "channel": "meta_prospecting",
+        "x": 10657.653925867207,
+        "delta_x": -10657.653925867207,
+        "delta_y": 11272.088037983433,
+        "sigma": 52768.1466154966,
+        "n_weeks": 6,
+        "source": "simulated geo-lift, holdout R01,R04,R09"
+      }
+    ],
+    "roi_prior": {
+      "meta_prospecting": [
+        0.2,
+        0.9
+      ],
+      "meta_retargeting": [
+        -1.0498221244986778,
+        0.6
+      ],
+      "search_brand": [
+        -1.0498221244986778,
+        0.6
+      ],
+      "search_nonbrand": [
+        0.2,
+        0.9
+      ],
+      "tiktok": [
+        0.2,
+        0.9
+      ],
+      "youtube": [
+        0.2,
+        0.9
+      ]
+    }
+  },
+  "outputs": {
+    "draws": "draws.parquet",
+    "roi_summary": "roi_summary.parquet",
+    "diagnostics": "diagnostics.json"
+  },
+  "variant_label": "DAG-informed MMM + lift-test calibration",
+  "variant_description": "Brand search and retargeting spend is caused by demand (DAG: demand \u2192 spend \u2192 conversions), so its correlation with revenue is mostly reverse causation. Skeptical ROI prior LogNormal(log 0.35, 0.6) for those two channels; default prior elsewhere. Plus a lift-test likelihood term for: meta_prospecting.",
+  "channels": [
+    "meta_prospecting",
+    "meta_retargeting",
+    "search_brand",
+    "search_nonbrand",
+    "tiktok",
+    "youtube"
+  ],
+  "control_names": [
+    "trend",
+    "sin1",
+    "cos1",
+    "sin2",
+    "cos2",
+    "sin3",
+    "cos3",
+    "promo_week",
+    "bfcm_week",
+    "gifting_week"
+  ],
+  "x_scale": [
+    10192.307692307691,
+    3653.846153846154,
+    3653.8461538461547,
+    9718.99987202344,
+    5192.3076923076915,
+    6571.428571428571
+  ],
+  "y_scale": 129317.11948487721,
+  "weeks": {
+    "start": "2023-10-02",
+    "end": "2026-09-21",
+    "fit_end": "2026-09-21"
+  },
+  "observed_weekly_spend": {
+    "meta_prospecting": {
+      "min": 5419.792841471333,
+      "max": 21733.684752608984,
+      "last13_mean": 10657.653925867207
+    },
+    "meta_retargeting": {
+      "min": 1535.488590012899,
+      "max": 6479.163841825437,
+      "last13_mean": 3934.2666720429092
+    },
+    "search_brand": {
+      "min": 2415.49870783593,
+      "max": 6989.110851900374,
+      "last13_mean": 3947.8975287890685
+    },
+    "search_nonbrand": {
+      "min": 5481.552096613517,
+      "max": 16845.928267394236,
+      "last13_mean": 11304.002240060683
+    },
+    "tiktok": {
+      "min": 2035.0504505343974,
+      "max": 10844.118062911823,
+      "last13_mean": 5154.337362983583
+    },
+    "youtube": {
+      "min": 3999.1302614009237,
+      "max": 9579.123455400457,
+      "last13_mean": 5495.838736063438
+    }
+  },
+  "fit_seconds": 13.7,
+  "converged": true
+}
