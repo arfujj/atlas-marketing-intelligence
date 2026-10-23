@@ -1,4 +1,11 @@
-.PHONY: setup test lint sim
+.PHONY: setup test lint sim build dbt-test
+
+ROOT := $(abspath .)
+export ATLAS_HALDEN_DIR ?= $(ROOT)/data/synthetic/halden
+export ATLAS_GA4_DIR ?= $(ROOT)/data/ga4
+export ATLAS_DUCKDB ?= $(ROOT)/data/serving/atlas.duckdb
+export DBT_PROFILES_DIR := $(ROOT)/dbt
+GA4_VARS := $(if $(wildcard $(ATLAS_GA4_DIR)/manifest.json),--vars '{ga4_enabled: true}',)
 
 setup:
 	uv sync --python 3.12
@@ -11,3 +18,7 @@ lint:
 
 sim:
 	uv run python -m atlas.sim --out data/synthetic/halden
+
+build: sim
+	mkdir -p data/serving
+	cd dbt && uv run dbt build --quiet $(GA4_VARS)

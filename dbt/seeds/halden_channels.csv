@@ -1,0 +1,7 @@
+channel,label,platform,channel_group,role,sort_order
+search_nonbrand,Search · Non-brand,Google Ads,search,prospecting,1
+search_brand,Search · Brand,Google Ads,search,harvest,2
+meta_prospecting,Meta · Prospecting,Meta,social,prospecting,3
+meta_retargeting,Meta · Retargeting,Meta,social,harvest,4
+tiktok,TikTok,TikTok,social,prospecting,5
+youtube,YouTube,Google Ads,video,prospecting,6

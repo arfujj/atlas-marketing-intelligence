@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: halden
+    description: >
+      SIMULATED. Observable tables of the fictional company Halden Coffee Works, written by
+      the ATLAS simulator (`make sim`). Ground truth lives in a separate `truth/` folder and
+      is deliberately not declared as a dbt source.
+    meta:
+      external_location: "{{ env_var('ATLAS_HALDEN_DIR', '../data/synthetic/halden') }}/observed/{name}.parquet"
+    tables:
+      - name: media_weekly
+        description: Billed spend, impressions and clicks by week × region × channel.
+      - name: outcomes_weekly
+        description: Recorded new customers, orders, revenue and contribution by week × region.
+      - name: sessions_weekly
+        description: Site sessions (paid = platform clicks; organic/direct) by week × region.
+      - name: calendar_weekly
+        description: Promotion, Black Friday/Cyber Monday and gifting-week flags.
+      - name: journeys
+        description: Customer journeys (touch path as `a>b>c`), converted flag and sampling weight.

@@ -1,0 +1,7 @@
+atlas:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('ATLAS_DUCKDB', '../data/serving/atlas.duckdb') }}"
+      threads: 4

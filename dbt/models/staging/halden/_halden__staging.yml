@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_halden__media
+    description: One row per week × region × channel. Spend is billed spend (USD).
+    tests:
+      - unique_combination: {arguments: {columns: [week_start, geo, channel]}}
+    columns:
+      - name: week_start
+        tests: [not_null]
+      - name: geo
+        tests:
+          - not_null
+          - relationships: {arguments: {to: ref('halden_regions'), field: geo}}
+      - name: channel
+        tests:
+          - not_null
+          - relationships: {arguments: {to: ref('halden_channels'), field: channel}}
+      - name: spend
+        tests: [not_null, non_negative]
+      - name: clicks
+        tests: [not_null, non_negative]
+
+  - name: stg_halden__outcomes
+    description: One row per week × region. Recorded (tracked) outcomes.
+    tests:
+      - unique_combination: {arguments: {columns: [week_start, geo]}}
+    columns:
+      - name: week_start
+        tests: [not_null]
+      - name: geo
+        tests: [not_null, {relationships: {arguments: {to: ref('halden_regions'), field: geo}}}]
+      - name: revenue
+        tests: [not_null, non_negative]
+      - name: new_customers
+        tests: [not_null, non_negative]
+      - name: repeat_orders
+        tests: [non_negative]
+
+  - name: stg_halden__sessions
+    tests:
+      - unique_combination: {arguments: {columns: [week_start, geo]}}
+    columns:
+      - name: sessions
+        tests: [not_null, non_negative]
+
+  - name: stg_halden__calendar
+    columns:
+      - name: week_start
+        tests: [unique, not_null]
+
+  - name: stg_halden__journeys
+    columns:
+      - name: journey_id
+        tests: [unique, not_null]
+      - name: path
+        tests: [not_null]
+      - name: weight
+        tests: [not_null, {between: {arguments: {min_value: 1, max_value: 1000}}}]

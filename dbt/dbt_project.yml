@@ -1,0 +1,32 @@
+name: atlas
+version: "0.2.0"
+config-version: 2
+profile: atlas
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages", "logs"]
+
+vars:
+  # GA4 models need data/ga4/*.parquet (BigQuery extraction or the validated mirror).
+  # The Makefile turns this on when data/ga4/manifest.json exists; CI uses a schema fixture.
+  ga4_enabled: false
+
+models:
+  atlas:
+    staging:
+      +materialized: view
+      halden: {+schema: halden_stg}
+    intermediate:
+      +materialized: view
+      halden: {+schema: halden_int}
+    marts:
+      +materialized: table
+      halden: {+schema: halden}
+
+seeds:
+  atlas:
+    +schema: ref

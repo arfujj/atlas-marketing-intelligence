@@ -14,3 +14,10 @@ data/synthetic/
 # Frontend
 node_modules/
 .next/
+
+# dbt
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml
+logs/

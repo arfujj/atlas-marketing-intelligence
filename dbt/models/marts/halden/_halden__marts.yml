@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: dim_channel
+    description: Paid channels. `role` = harvest for demand-capture channels (brand search, retargeting).
+    columns:
+      - name: channel
+        tests: [unique, not_null]
+      - name: role
+        tests: [{accepted_values: {arguments: {values: [prospecting, harvest]}}}]
+
+  - name: dim_region
+    columns:
+      - name: geo
+        tests: [unique, not_null]
+
+  - name: dim_week
+    columns:
+      - name: week_start
+        tests: [unique, not_null]
+      - name: week_index
+        tests: [unique, not_null]
+
+  - name: fct_channel_geo_week
+    description: >
+      Week × region × paid channel. Spend/impressions/clicks are platform-reported (SIMULATED);
+      last_click_* is ATTRIBUTED credit, not causal impact.
+    tests:
+      - unique_combination: {arguments: {columns: [week_start, geo, channel]}}
+      - same_row_count: {arguments: {compare_model: ref('stg_halden__media')}}
+    columns:
+      - name: channel
+        tests: [not_null, {relationships: {arguments: {to: ref('dim_channel'), field: channel}}}]
+      - name: geo
+        tests: [not_null, {relationships: {arguments: {to: ref('dim_region'), field: geo}}}]
+      - name: week_start
+        tests: [not_null, {relationships: {arguments: {to: ref('dim_week'), field: week_start}}}]
+      - name: last_click_conversions
+        tests: [not_null, non_negative]
+
+  - name: fct_channel_week
+    description: National week × paid channel rollup of fct_channel_geo_week.
+    tests:
+      - unique_combination: {arguments: {columns: [week_start, channel]}}
+    columns:
+      - name: channel
+        tests: [not_null, {relationships: {arguments: {to: ref('dim_channel'), field: channel}}}]
+      - name: spend
+        tests: [not_null, non_negative]
+
+  - name: fct_geo_week
+    description: >
+      Week × region recorded outcomes, sessions and total paid spend.
+      contribution_profit = first-order contribution + repeat contribution − paid spend.
+    tests:
+      - unique_combination: {arguments: {columns: [week_start, geo]}}
+      - same_row_count: {arguments: {compare_model: ref('stg_halden__outcomes')}}
+    columns:
+      - name: geo
+        tests: [not_null, {relationships: {arguments: {to: ref('dim_region'), field: geo}}}]
+      - name: sessions
+        tests: [not_null, non_negative]
+      - name: spend
+        tests: [not_null, non_negative]
+
+  - name: mart_kpi_weekly
+    description: National weekly KPIs for the Command Center.
+    columns:
+      - name: week_start
+        tests: [unique, not_null]
+      - name: conversion_rate
+        tests: [{between: {arguments: {min_value: 0, max_value: 1}}}]

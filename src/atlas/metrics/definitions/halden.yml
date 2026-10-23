@@ -1,0 +1,325 @@
+# Metric definitions for the Halden Coffee Works workspace (SIMULATED, fictional company).
+#
+# type: simple   -> aggregate `expression` over `model`, filtered and grouped by `dimensions`
+# type: ratio    -> ratio of sums: numerator metric / denominator metric (never an average of ratios)
+# type: trailing -> ratio of sums over the `window_weeks` ending at the requested end date
+#
+# evidence_type is one of: Observed, Attributed, Modeled, Experimental, Simulated, Assumption.
+# In this workspace every recorded number is Simulated (it comes from the ATLAS simulator);
+# attribution-based numbers are Attributed (credit allocation, not causal effect).
+
+workspace: halden
+metrics:
+  - name: revenue
+    label: Revenue
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(revenue)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: currency
+    evidence_type: Simulated
+    definition: Recorded first-order plus repeat revenue, net of promotional discounts.
+    caveats:
+      - Recorded revenue; a tracking outage lowers it without a real loss (see Changes).
+
+  - name: first_order_revenue
+    label: New-customer revenue
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(first_order_revenue)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: currency
+    evidence_type: Simulated
+    definition: Revenue from customers' first orders in the period.
+    caveats: []
+
+  - name: repeat_revenue
+    label: Returning-customer revenue
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(repeat_revenue)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: currency
+    evidence_type: Simulated
+    definition: Revenue from repeat orders by previously acquired customers.
+    caveats: []
+
+  - name: new_customer_revenue_share
+    label: New-customer revenue share
+    type: ratio
+    numerator: first_order_revenue
+    denominator: revenue
+    format: percent
+    evidence_type: Simulated
+    definition: First-order revenue / total revenue.
+    caveats: []
+
+  - name: spend
+    label: Paid media spend
+    type: simple
+    model: halden.fct_channel_geo_week
+    expression: sum(spend)
+    dimensions: [week_start, geo, channel]
+    grain: week × region × channel
+    format: currency
+    evidence_type: Simulated
+    definition: Billed spend across the six paid channels.
+    caveats:
+      - Billed, not effective, spend. During a CPC spike billed spend rises with no extra delivery.
+
+  - name: first_order_contribution
+    label: First-order contribution
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(first_order_contribution)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: currency
+    evidence_type: Simulated
+    definition: First-order revenue minus product cost, fulfilment and promotional discount.
+    caveats: []
+
+  - name: repeat_contribution
+    label: Repeat contribution
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(repeat_contribution)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: currency
+    evidence_type: Simulated
+    definition: Contribution margin on repeat orders.
+    caveats: []
+
+  - name: contribution_profit
+    label: Contribution profit
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(first_order_contribution + repeat_contribution - spend)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: currency
+    evidence_type: Simulated
+    definition: First-order contribution + repeat contribution − paid media spend.
+    caveats:
+      - Excludes fixed costs; it is a marketing-level profit measure, not operating profit.
+
+  - name: mer
+    label: MER (marketing efficiency ratio)
+    type: ratio
+    numerator: revenue
+    denominator: spend
+    format: ratio
+    evidence_type: Simulated
+    definition: Total revenue / total paid spend. Blended; says nothing about incrementality.
+    caveats:
+      - Not channel-attributable; rises when organic demand rises even if media did nothing.
+
+  - name: new_customers
+    label: New customers
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(new_customers)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: integer
+    evidence_type: Simulated
+    definition: Recorded first-time purchasers.
+    caveats: []
+
+  - name: orders
+    label: Orders
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(orders)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: integer
+    evidence_type: Simulated
+    definition: Recorded first and repeat orders.
+    caveats: []
+
+  - name: sessions
+    label: Site sessions
+    type: simple
+    model: halden.fct_geo_week
+    expression: sum(sessions)
+    dimensions: [week_start, geo]
+    grain: week × region
+    format: integer
+    evidence_type: Simulated
+    definition: Paid sessions (platform clicks) plus organic/direct sessions.
+    caveats: []
+
+  - name: conversion_rate
+    label: Conversion rate
+    type: ratio
+    numerator: orders
+    denominator: sessions
+    format: percent
+    evidence_type: Simulated
+    definition: Orders / sessions.
+    caveats:
+      - Falls during both tracking outages (measurement) and checkout failures (real); check the region pattern.
+
+  - name: aov
+    label: Average order value
+    type: ratio
+    numerator: revenue
+    denominator: orders
+    format: currency
+    evidence_type: Simulated
+    definition: Revenue / orders.
+    caveats: []
+
+  - name: blended_cac
+    label: Blended CAC
+    type: ratio
+    numerator: spend
+    denominator: new_customers
+    format: currency
+    evidence_type: Simulated
+    definition: Total paid spend / all new customers (paid and organic).
+    caveats:
+      - Understates the true cost of a paid customer because organic customers are in the denominator.
+
+  - name: last_click_conversions
+    label: Last-click conversions
+    type: simple
+    model: halden.fct_channel_geo_week
+    expression: sum(last_click_conversions)
+    dimensions: [week_start, geo, channel]
+    grain: week × region × channel
+    format: integer
+    evidence_type: Attributed
+    definition: New customers whose last tracked touch was the channel.
+    caveats:
+      - Credit allocation, not causal effect. Harvest channels collect credit for demand they did not create.
+
+  - name: last_click_revenue
+    label: Last-click revenue
+    type: simple
+    model: halden.fct_channel_geo_week
+    expression: sum(last_click_revenue)
+    dimensions: [week_start, geo, channel]
+    grain: week × region × channel
+    format: currency
+    evidence_type: Attributed
+    definition: First-order revenue of last-click-credited new customers.
+    caveats:
+      - Credit allocation, not causal effect.
+
+  - name: last_click_roas
+    label: Last-click ROAS
+    type: ratio
+    numerator: last_click_revenue
+    denominator: spend
+    format: ratio
+    evidence_type: Attributed
+    definition: Last-click first-order revenue / billed spend.
+    caveats:
+      - Not incremental. Compare with MMM and experiment estimates on the Evidence page.
+
+  - name: paid_cac_attributed
+    label: Paid CAC (last-click)
+    type: ratio
+    numerator: spend
+    denominator: last_click_conversions
+    format: currency
+    evidence_type: Attributed
+    definition: Billed spend / last-click new customers.
+    caveats:
+      - Uses attributed, not incremental, customers.
+
+  - name: clicks
+    label: Clicks
+    type: simple
+    model: halden.fct_channel_geo_week
+    expression: sum(clicks)
+    dimensions: [week_start, geo, channel]
+    grain: week × region × channel
+    format: integer
+    evidence_type: Simulated
+    definition: Platform-reported clicks.
+    caveats: []
+
+  - name: impressions
+    label: Impressions
+    type: simple
+    model: halden.fct_channel_geo_week
+    expression: sum(impressions)
+    dimensions: [week_start, geo, channel]
+    grain: week × region × channel
+    format: integer
+    evidence_type: Simulated
+    definition: Platform-reported impressions.
+    caveats: []
+
+  - name: cpc
+    label: Cost per click
+    type: ratio
+    numerator: spend
+    denominator: clicks
+    format: currency
+    evidence_type: Simulated
+    definition: Billed spend / clicks.
+    caveats: []
+
+  - name: ctr
+    label: Click-through rate
+    type: ratio
+    numerator: clicks
+    denominator: impressions
+    format: percent
+    evidence_type: Simulated
+    definition: Clicks / impressions.
+    caveats: []
+
+  - name: first_order_cm_rate
+    label: First-order contribution margin rate
+    type: ratio
+    numerator: first_order_contribution
+    denominator: first_order_revenue
+    format: percent
+    evidence_type: Simulated
+    definition: First-order contribution / first-order revenue. Default margin assumption for the optimizer.
+    caveats:
+      - Blended across acquisition sources; the true margin differs by channel and is not observable here.
+
+  - name: est_value_52w_per_new_customer
+    label: Estimated 52-week revenue per new customer
+    type: trailing
+    window_weeks: 52
+    numerator_expression: sum(first_order_revenue + repeat_revenue)
+    denominator_expression: sum(new_customers)
+    model: halden.fct_geo_week
+    dimensions: [geo]
+    format: currency
+    evidence_type: Modeled
+    definition: >
+      ESTIMATE. Trailing-52-week (first-order + repeat revenue) / new customers in the same
+      52 weeks. A steady-state approximation of 52-week value; ignores the start of the
+      requested date range.
+    caveats:
+      - Biased low when acquisition is growing (repeat revenue lags acquisition by ~4 months).
+      - Blended across channels; channel-specific value is not observable without cohort data.
+
+  - name: repeat_value_multiplier
+    label: Repeat-value multiplier (52 weeks)
+    type: trailing
+    window_weeks: 52
+    numerator_expression: sum(repeat_contribution)
+    denominator_expression: sum(first_order_contribution)
+    model: halden.fct_geo_week
+    dimensions: [geo]
+    format: ratio
+    evidence_type: Modeled
+    definition: >
+      ESTIMATE. Trailing-52-week repeat contribution / first-order contribution. Used as the
+      default 52-week multiplier assumption in the optimizer (52-week contribution =
+      first-order contribution × (1 + multiplier)).
+    caveats:
+      - Same steady-state caveat as the 52-week value estimate.
