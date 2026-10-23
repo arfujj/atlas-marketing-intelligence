@@ -72,7 +72,7 @@ incidents, finds **96%** of them; **66%** of its alerts are real (run `anomaly-2
 make demo          # needs uv and Node 20+; fresh clone → http://localhost:3210 in a few minutes
 ```
 
-or `docker compose up --build` (http://localhost:3000). Model runs are committed, so nothing is
+or `docker compose up --build` (same address). Model runs are committed, so nothing is
 fitted at start-up. To reproduce them: `make models` (~3 min), `make scorecard` (~1–2 h on
 10 cores), `make criteo` (downloads 300 MB, deletes it after).
 

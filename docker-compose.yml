@@ -1,4 +1,4 @@
-# Local production-like stack: `docker compose up --build`, then open http://localhost:3000 (WEB_PORT / API_PORT override)
+# Local production-like stack: `docker compose up --build` (WEB_PORT / API_PORT override the host ports)
 services:
   api:
     build: .
@@ -11,7 +11,7 @@ services:
     build: ./web
     environment:
       ATLAS_API_URL: http://api:8000
-    ports: ["${WEB_PORT:-3000}:3000"]
+    ports: ["${WEB_PORT:-3210}:3000"]
     depends_on:
       api:
         condition: service_healthy
