@@ -1,4 +1,4 @@
-.PHONY: setup test lint sim build dbt-test models scorecard criteo api
+.PHONY: setup test lint sim build dbt-test models scorecard criteo api web web-test
 
 ROOT := $(abspath .)
 export ATLAS_HALDEN_DIR ?= $(ROOT)/data/synthetic/halden
@@ -39,3 +39,10 @@ criteo:
 
 api:
 	uv run uvicorn atlas.api.app:app --reload --port 8000
+
+web:
+	cd web && npm run dev -- -p 3210
+
+# Needs `make api` and `make web` running.
+web-test:
+	cd web && npm run typecheck && npx eslint src && npm test && npm run e2e
