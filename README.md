@@ -118,6 +118,9 @@ fitted at start-up. To reproduce them: `make models` (~3 min), `make scorecard` 
 ## Read more
 
 - [Case study and interview notes](docs/case-study.md)
+- [Portfolio kit](docs/portfolio-kit.md): resume bullets, pitch, 5- and 15-minute talks
+- [Architecture and data lineage](docs/architecture.md)
+- [Data dictionary](docs/data-dictionary.md) (generated from the warehouse)
 - [Strategy, scope and roadmap](docs/00-strategy.md)
 - [Data-generating process (pre-registered)](docs/data-generating-process.md)
 - [Decision log](docs/decisions.md): every non-obvious choice, with the alternatives rejected
