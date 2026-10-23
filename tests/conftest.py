@@ -39,12 +39,31 @@ def halden_world():
     return simulate(default_world(), seed=TEST_SEED)
 
 
+GA4_DIR = ROOT / "data" / "ga4"
+GA4_AVAILABLE = (GA4_DIR / "manifest.json").exists()
+
+
 @pytest.fixture(scope="session")
-def halden_db(tmp_path_factory, halden_world):
-    tmp = tmp_path_factory.mktemp("halden")
-    write_world(halden_world, tmp / "halden")
-    db = tmp / "atlas.duckdb"
-    run_dbt(["build"], {"ATLAS_HALDEN_DIR": str(tmp / "halden"), "ATLAS_DUCKDB": str(db)})
-    con = duckdb.connect(str(db))  # dbt may still hold a read-write handle in-process
+def halden_dir(tmp_path_factory, halden_world) -> Path:
+    out = tmp_path_factory.mktemp("halden") / "halden"
+    write_world(halden_world, out)
+    return out
+
+
+@pytest.fixture(scope="session")
+def serving_db_path(halden_dir) -> Path:
+    """dbt build of the full project (Halden + GA4 when the extracts exist) into a temp DB."""
+    db = halden_dir.parent / "atlas.duckdb"
+    args = ["build"]
+    if GA4_AVAILABLE:
+        args += ["--vars", "{ga4_enabled: true}"]
+    run_dbt(args, {"ATLAS_HALDEN_DIR": str(halden_dir), "ATLAS_GA4_DIR": str(GA4_DIR),
+                   "ATLAS_DUCKDB": str(db)})
+    return db
+
+
+@pytest.fixture(scope="session")
+def halden_db(serving_db_path):
+    con = duckdb.connect(str(serving_db_path))  # dbt may still hold a handle in-process
     yield con
     con.close()

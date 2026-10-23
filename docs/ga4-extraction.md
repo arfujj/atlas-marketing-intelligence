@@ -31,9 +31,20 @@ reconciliation. The transaction figure depends on how `(not set)` ids and duplic
 
 - **883** purchase events have `transaction_id = '(not set)'` and **23** have a NULL id: they can't be deduplicated by id.
 - **335** purchase rows repeat an already-seen transaction id.
-- Revenue: **$362,165** summing purchase events naively, versus **$307,608** after deduplicating by
-  transaction id (excluding `(not set)`/NULL). The marts must state which definition they use.
+- Revenue: **$362,165** summing purchase events naively, versus **$307,640** after deduplicating by
+  transaction id with the documented rule (keep the earliest event per valid id; exclude
+  `(not set)`/NULL, which carry **$31,817** on 906 events and are reported separately). An earlier
+  version of this note said $307,608; no dedup rule reproduces that figure from the extract
+  (earliest $307,640, latest $307,868, min $307,308, max $308,200), so it is corrected here
+  (decision D-011).
+- Item-level revenue reconciles to event-level revenue within 0.1%: $362,110 vs $362,165 over all
+  rows, $307,562 vs $307,640 for deduplicated transactions; 81.3% of transactions match to the cent.
+- `event_date` equals the UTC date of `event_timestamp` for every event in this export, so all
+  daily marts use UTC dates (tested).
 - **845** sessions span more than one `event_date` (midnight crossing): a session's date ≠ every event's date.
 - `traffic_source.*` is the **first-user** acquisition source: `(data deleted)` covers 22,236 sessions,
   `<Other>` 97,289. Never present it as session or last-touch attribution.
 - 4,848 sessions contain a purchase event.
+
+All of the above are asserted by dbt tests in `dbt/tests/ga4/` and surfaced as rows of
+`ga4.mart_ga4_data_quality` (value + the modelling decision each finding drives).

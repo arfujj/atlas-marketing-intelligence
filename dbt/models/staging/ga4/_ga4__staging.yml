@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_ga4__sessions
+    description: >
+      One row per session (OBSERVED). first_user_* = first-user acquisition source, never the
+      session's own source.
+    tests:
+      - unique_combination: {arguments: {columns: [user_pseudo_id, ga_session_id]}}
+    columns:
+      - name: session_key
+        description: user_pseudo_id || '-' || ga_session_id
+        tests: [unique, not_null]
+      - name: session_date
+        tests: [not_null]
+      - name: first_user_channel_group
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Organic Search', 'Direct', 'Referral', 'Paid Search',
+                         'Data deleted', 'Other (obfuscated)']
+  - name: stg_ga4__purchase_events
+    columns:
+      - name: purchase_event_id
+        tests: [unique, not_null]
+      - name: transaction_id_status
+        tests: [{accepted_values: {arguments: {values: [valid, not_set, 'null']}}}]
+      - name: purchase_revenue_usd
+        tests: [not_null, non_negative]
+      - name: session_key
+        tests:
+          - relationships: {arguments: {to: ref('stg_ga4__sessions'), field: session_key}}
+  - name: stg_ga4__purchase_items
+    columns:
+      - name: quantity
+        tests: [non_negative]
+  - name: stg_ga4__events_daily
+    tests:
+      - unique_combination: {arguments: {columns: [event_date, event_name]}}
+  - name: stg_ga4__item_funnel_daily
+    tests:
+      - unique_combination: {arguments: {columns: [event_date, event_name, item_category]}}

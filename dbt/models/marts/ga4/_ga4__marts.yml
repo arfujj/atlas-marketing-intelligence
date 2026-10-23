@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: fct_ga4_transactions
+    description: >
+      OBSERVED. One row per deduplicated transaction (valid transaction_id, earliest event).
+      Excludes '(not set)'/NULL ids, which cannot be deduplicated (see mart_ga4_data_quality).
+    columns:
+      - name: transaction_id
+        tests: [unique, not_null]
+      - name: revenue
+        tests: [not_null, non_negative]
+      - name: session_key
+        tests:
+          - not_null
+          - relationships: {arguments: {to: ref('stg_ga4__sessions'), field: session_key}}
+      - name: user_purchase_number
+        tests: [not_null]
+
+  - name: fct_ga4_item_lines
+    description: OBSERVED. Item lines of deduplicated transactions.
+    columns:
+      - name: transaction_id
+        tests:
+          - not_null
+          - relationships: {arguments: {to: ref('fct_ga4_transactions'), field: transaction_id}}
+      - name: item_revenue
+        tests: [non_negative]
+
+  - name: mart_ga4_daily
+    description: OBSERVED. Daily funnel, purchase-event, transaction and revenue KPIs (UTC dates).
+    columns:
+      - name: date
+        tests: [unique, not_null]
+      - name: session_conversion_rate
+        tests: [{between: {arguments: {min_value: 0, max_value: 1}}}]
+
+  - name: mart_ga4_funnel
+    description: >
+      OBSERVED. Sessions reaching each funnel step by day × device × FIRST-USER channel group ×
+      country group. first_user_channel_group is acquisition, not session source.
+    tests:
+      - unique_combination:
+          arguments: {columns: [date, device_category, first_user_channel_group, country_group]}
+    columns:
+      - name: sessions
+        tests: [not_null, non_negative]
+
+  - name: mart_ga4_category_daily
+    description: OBSERVED. Item-category funnel and deduplicated item revenue by day.
+    tests:
+      - unique_combination: {arguments: {columns: [date, item_category]}}
+
+  - name: mart_ga4_cohorts
+    description: >
+      OBSERVED. Weekly first-seen cohorts within the 92-day window (left-censored).
+    tests:
+      - unique_combination: {arguments: {columns: [cohort_week, week_number]}}
+    columns:
+      - name: retention_rate
+        tests: [{between: {arguments: {min_value: 0, max_value: 1}}}]
+      - name: week_number
+        tests: [non_negative]
+
+  - name: mart_ga4_rfm
+    description: OBSERVED inputs; rule-based RFM segments of purchasing users (92-day window).
+    columns:
+      - name: user_pseudo_id
+        tests: [unique, not_null]
+      - name: rfm_segment
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Champions', 'Repeat buyers', 'Recent high-value', 'Recent one-time',
+                         'Lapsing high-value', 'Lapsing one-time']
+
+  - name: mart_ga4_data_quality
+    description: Data-quality findings with measured values and the modelling decision each drives.
+    columns:
+      - name: check_id
+        tests: [unique, not_null]

@@ -20,12 +20,19 @@ models:
     staging:
       +materialized: view
       halden: {+schema: halden_stg}
+      ga4: {+schema: ga4_stg, +enabled: "{{ var('ga4_enabled', false) | as_bool }}"}
     intermediate:
       +materialized: view
       halden: {+schema: halden_int}
+      ga4: {+schema: ga4_int, +enabled: "{{ var('ga4_enabled', false) | as_bool }}"}
     marts:
       +materialized: table
       halden: {+schema: halden}
+      ga4: {+schema: ga4, +enabled: "{{ var('ga4_enabled', false) | as_bool }}"}
+
+data_tests:
+  atlas:
+    ga4: {+enabled: "{{ var('ga4_enabled', false) | as_bool }}"}
 
 seeds:
   atlas:

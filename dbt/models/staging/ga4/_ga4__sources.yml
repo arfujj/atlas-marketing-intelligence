@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: ga4
+    description: >
+      OBSERVED. Google Merchandise Store, GA4 obfuscated public sample
+      (bigquery-public-data.ga4_obfuscated_sample_ecommerce, 2020-11-01 → 2021-01-31),
+      extracted by scripts/extract_ga4.py. traffic_source.* is FIRST-USER acquisition.
+      Never joined with Halden or Criteo data.
+    meta:
+      external_location: "{{ env_var('ATLAS_GA4_DIR', '../data/ga4') }}/{name}.parquet"
+    tables:
+      - name: sessions
+        description: One row per user_pseudo_id × ga_session_id with funnel flags.
+      - name: purchase_events
+        description: Raw purchase events, duplicates intentionally kept.
+      - name: purchase_items
+        description: Item lines of purchase events (lines of duplicated events included).
+      - name: item_funnel_daily
+        description: Daily item-event volume by event and item category.
+      - name: events_daily
+        description: Daily event counts by event name.
+      - name: totals
+        description: Dataset totals used for reconciliation.
