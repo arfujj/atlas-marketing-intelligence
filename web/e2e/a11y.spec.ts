@@ -15,3 +15,12 @@ for (const path of PAGES) {
     });
   }
 }
+
+test("the analyst drawer has no WCAG A/AA violations when open", async ({ page }) => {
+  await page.goto("/halden");
+  await page.getByRole("button", { name: "Ask ATLAS" }).click();
+  await page.getByRole("button", { name: "Did the Criteo ads work?" }).click();
+  await expect(page.getByText(/randomized test of/)).toBeVisible();
+  const r = await new AxeBuilder({ page }).include("#analyst-panel").withTags(["wcag2a", "wcag2aa"]).analyze();
+  expect(r.violations.map((v) => `${v.id}: ${v.nodes[0]?.target.join(" ")}`)).toEqual([]);
+});

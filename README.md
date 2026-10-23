@@ -59,6 +59,10 @@ run `scorecard-24w-9a760623`):
   (sample-ratio p = 0.999). Targeting the top 10% by uplift model yields 6.3× the average lift on
   held-out users.
 
+An **analyst drawer** ("Ask ATLAS") answers questions such as *Why did revenue fall last week?* or
+*How should we spend $400K?* from the same stored runs. It is a deterministic router, not a
+language model: every number in an answer lists its evidence type and the run it came from.
+
 The change detector, tuned on incident-free worlds and tested on 12 others with 72 injected
 incidents, finds **96%** of them; **66%** of its alerts are real (run `anomaly-20261023-d6a9f4ff`).
 
@@ -95,8 +99,9 @@ fitted at start-up. To reproduce them: `make models` (~3 min), `make scorecard` 
   lift-test likelihood term) so every modelling choice is visible ([`src/atlas/mmm`](src/atlas/mmm)).
 - **Optimizer** solves exactly (dynamic programming) over 1,000 posterior draws, flags spend outside
   the observed range, and reports P10/P50/P90 rather than hand-picked scenarios.
-- **Tests**: 229 pytest tests (including hypothesis property tests and API contract tests), dbt data
-  tests, Vitest, and Playwright at desktop and phone width. CI runs all of them plus the Docker build.
+- **Tests**: 241 pytest tests (including hypothesis property tests and API contract tests), dbt data
+  tests, Vitest, and Playwright (every page at desktop and phone width, the optimizer, the analyst,
+  and axe WCAG A/AA checks in light and dark mode). CI runs all of them plus the Docker build.
 
 ## Limitations
 

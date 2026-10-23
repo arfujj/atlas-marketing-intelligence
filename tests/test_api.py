@@ -95,3 +95,43 @@ def test_missing_runs_is_503(served_db, tmp_path):
     c = TestClient(create_app(Settings(db_path=served_db, runs_dir=tmp_path)))
     assert c.get("/halden/plan").status_code == 503
     assert c.get("/halden/metrics/revenue").status_code == 200
+
+
+# --------------------------------------------------------------------------- analyst
+
+
+@pytest.mark.parametrize("question, intent", [
+    ("Why did revenue fall last week?", "explain_change"),
+    ("How should we spend $500K next quarter?", "plan_budget"),
+    ("What is the most profitable level?", "plan_budget"),
+    ("Which channels does last-click over-credit?", "attribution_gap"),
+    ("Which experiment should we run next?", "next_experiment"),
+    ("How much should we trust the MMM?", "model_trust"),
+    ("What was revenue in R03 over the last 13 weeks?", "metric"),
+    ("Did demand fall in late January on the GA4 store?", "ga4_january"),
+    ("Did the Criteo ads work?", "criteo_lift"),
+    ("what about the weather", "help"),
+])
+def test_analyst_routes_questions_and_cites_every_fact(client, question, intent):
+    a = client.post("/analyst", json={"question": question}).json()
+    assert a["intent"] == intent
+    assert a["paragraphs"]
+    for f in a["facts"]:
+        assert f["evidence"] and f["source"], f
+
+
+def test_analyst_numbers_come_from_the_same_runs_as_the_pages(client):
+    a = client.post("/analyst", json={"question": "Did the Criteo ads work?"}).json()
+    lift = client.get("/criteo/readout").json()["itt"]["visit"]["rel_lift"]
+    assert f"+{lift * 100:.1f}%" in a["paragraphs"][0]
+    m = client.post("/analyst", json={"question": "revenue in R03 over the last 4 weeks"}).json()
+    api = client.get("/halden/metrics/revenue", params={"geo": "R03", "group_by": "week_start"})
+    last4 = sum(r["value"] for r in api.json()["rows"][-4:])
+    assert m["facts"][0]["value"] == f"${last4 / 1e3:.1f}K"
+
+
+def test_analyst_budget_parsing_and_bounds(client):
+    a = client.post("/analyst", json={"question": "How should we spend $300k?"}).json()
+    assert a["paragraphs"][0].startswith("For a $300K quarter")
+    big = client.post("/analyst", json={"question": "plan a $90M budget"}).json()
+    assert "outside that range" in big["paragraphs"][0]

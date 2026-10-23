@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
 import Link from "next/link";
 
+import { AnalystDrawer } from "@/components/analyst";
 import { WorkspaceSwitcher } from "@/components/nav";
 
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           The three workspaces are never joined. Halden Coffee Works is a fictional, simulated company; its numbers
           make no claim about any real business.
         </footer>
+        <AnalystDrawer />
       </body>
     </html>
   );

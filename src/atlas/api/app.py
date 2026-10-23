@@ -20,6 +20,8 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, model_validator
 
+from atlas.analyst import SUGGESTIONS
+from atlas.analyst import answer as analyst_answer
 from atlas.metrics import Filters, MetricNotApplicable, metric_catalog, query_metric
 from atlas.optimizer import OBJECTIVES, Constraints, Economics, optimize
 from atlas.runs import RUNS_DIR, clean, latest_run, read_manifest
@@ -80,6 +82,10 @@ def provenance(evidence_type: str, run_id: str | None = None,
     if note:
         p["note"] = note
     return p
+
+
+class AskRequest(BaseModel):
+    question: str = Field(..., max_length=500)
 
 
 class OptimizeRequest(BaseModel):
@@ -293,6 +299,53 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def criteo() -> dict:
         rid, r = s.run_json("criteo", "readout.json")
         return r | {"provenance": provenance("Experimental", rid)}
+
+    # ------------------------------------------------------------------ Analyst
+
+    class Tools:
+        """The analyst's only window on the data: the same stored runs and metric layer the
+        pages use."""
+
+        def summary(self):
+            return s.run_json("halden", "summary.json")
+
+        def anomalies(self):
+            return s.run_json("anomaly", "anomaly.json")
+
+        def scorecard(self):
+            try:
+                return s.run_json("scorecard", "scorecard.json")
+            except HTTPException:
+                return None
+
+        def criteo(self):
+            return s.run_json("criteo", "readout.json")
+
+        def experiments(self):
+            rid, sm = s.run_json("halden", "summary.json")
+            return rid, {"next_experiments": sm["next_experiments"], "evpi": sm["evpi"]}
+
+        def optimize(self, budget, spend_all):
+            return run_optimizer(OptimizeRequest(budget=budget, spend_all=spend_all))
+
+        def metric(self, name, start, end, geo):
+            with duckdb.connect(str(s.db_path), read_only=True) as c:
+                return metric(name, c, start=date.fromisoformat(start),
+                              end=date.fromisoformat(end), geo=[geo] if geo else None,
+                              channel=None, group_by=None)
+
+        def last_week(self):
+            with duckdb.connect(str(s.db_path), read_only=True) as c:
+                r = query_metric(c, "revenue", Filters(), ("week_start",))
+            return str(r.data.week_start.max())[:10]
+
+    @app.get("/analyst/suggestions")
+    def suggestions() -> list[str]:
+        return SUGGESTIONS
+
+    @app.post("/analyst")
+    def ask(req: AskRequest) -> dict:
+        return clean(analyst_answer(req.question, Tools()))
 
     return app
 

@@ -56,3 +56,17 @@ test("allowing underspend never spends more than the budget and says how much it
   await page.getByRole("button", { name: "Re-optimise" }).click();
   await expect(page.getByText(/The most profitable plan spends \$[\d.]+K of the \$500K available/)).toBeVisible();
 });
+
+test("the analyst answers a suggested question with cited facts and links to the page", async ({ page }) => {
+  await page.goto("/ga4");
+  await page.getByRole("button", { name: "Ask ATLAS" }).click();
+  const panel = page.getByRole("dialog", { name: "Ask ATLAS" });
+  await panel.getByRole("button", { name: "Why did revenue fall last week?" }).click();
+  await expect(panel.getByText(/Site-wide conversion failure/)).toBeVisible();
+  await expect(panel.getByText(/anomaly-/).first()).toBeVisible();
+  await panel.getByLabel("Your question").fill("How should we spend $400K?");
+  await panel.getByRole("button", { name: "Ask", exact: true }).click();
+  await expect(panel.getByText(/For a \$400K quarter/)).toBeVisible();
+  await panel.getByRole("link", { name: "Open Decision →" }).last().click();
+  await expect(page).toHaveURL(/\/halden\/decision/);
+});
