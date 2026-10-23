@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+
+# Raw and generated data are reproducible from scripts; never commit raw third-party data.
+data/raw/
+data/synthetic/
+*.duckdb
+*.duckdb.wal
+
+# Frontend
+node_modules/
+.next/
