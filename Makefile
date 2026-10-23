@@ -1,4 +1,4 @@
-.PHONY: setup test lint sim build dbt-test
+.PHONY: setup test lint sim build dbt-test models scorecard criteo
 
 ROOT := $(abspath .)
 export ATLAS_HALDEN_DIR ?= $(ROOT)/data/synthetic/halden
@@ -24,3 +24,15 @@ sim:
 build: sim
 	mkdir -p data/serving
 	cd dbt && uv run dbt build --quiet $(GA4_VARS)
+
+# Model runs write to model_runs/{run_id}/ (see src/atlas/runs.py). `models` needs `build` for
+# the GA4 part of the anomaly run; the scorecard takes ~1 h on 10 cores and is run separately.
+models:
+	uv run python -m atlas.pipeline.halden
+	uv run python -m atlas.pipeline.anomaly
+
+scorecard:
+	uv run python -m atlas.pipeline.scorecard --worlds 24 --jobs 3
+
+criteo:
+	uv run python -m atlas.criteo run --delete-raw
