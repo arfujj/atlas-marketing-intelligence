@@ -1,0 +1,840 @@
+{
+ "seed": 3,
+ "budget": 609000.0,
+ "objective": "profit_52w",
+ "economics": {
+  "cm_rate": 0.36838487993282776,
+  "repeat_multiplier": 1.029039384099747
+ },
+ "current": {
+  "meta_prospecting": 161048.64665838666,
+  "meta_retargeting": 65762.10947507106,
+  "search_brand": 64728.06100944116,
+  "search_nonbrand": 128034.96124126426,
+  "tiktok": 88721.2412016507,
+  "youtube": 100704.98041418621
+ },
+ "constraints": {
+  "budget": 609000.0,
+  "mins": {
+   "meta_prospecting": 80000.0,
+   "meta_retargeting": 32000.0,
+   "search_brand": 32000.0,
+   "search_nonbrand": 64000.0,
+   "tiktok": 44000.0,
+   "youtube": 50000.0
+  },
+  "maxs": {
+   "meta_prospecting": 242000.0,
+   "meta_retargeting": 99000.0,
+   "search_brand": 98000.0,
+   "search_nonbrand": 193000.0,
+   "tiktok": 134000.0,
+   "youtube": 152000.0
+  },
+  "spend_all": true,
+  "step": 1000.0
+ },
+ "estimates": [
+  {
+   "channel": "meta_prospecting",
+   "method": "ols_naive",
+   "roi_mean": 3.6382819913654765,
+   "roi_p05": 1.752106163515143,
+   "roi_p95": 5.52445781921581,
+   "true_roi": 0.877760259927929,
+   "abs_error": 2.7605217314375476,
+   "covered90": false
+  },
+  {
+   "channel": "meta_prospecting",
+   "method": "last_click",
+   "roi_mean": 0.626061987792063,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 0.877760259927929,
+   "abs_error": 0.25169827213586604,
+   "covered90": null
+  },
+  {
+   "channel": "meta_prospecting",
+   "method": "markov",
+   "roi_mean": 1.1241521453909367,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 0.877760259927929,
+   "abs_error": 0.2463918854630076,
+   "covered90": null
+  },
+  {
+   "channel": "meta_prospecting",
+   "method": "bayes_default",
+   "roi_mean": 3.159300690149052,
+   "roi_p05": 0.6997983193315233,
+   "roi_p95": 6.019405662823585,
+   "true_roi": 0.877760259927929,
+   "abs_error": 2.2815404302211233,
+   "covered90": true
+  },
+  {
+   "channel": "meta_prospecting",
+   "method": "bayes_dag",
+   "roi_mean": 3.578748311834581,
+   "roi_p05": 1.0097039476486729,
+   "roi_p95": 7.200809961718595,
+   "true_roi": 0.877760259927929,
+   "abs_error": 2.700988051906652,
+   "covered90": false
+  },
+  {
+   "channel": "meta_prospecting",
+   "method": "bayes_dag_calibrated",
+   "roi_mean": 4.232566581877403,
+   "roi_p05": 0.9031935590138068,
+   "roi_p95": 7.876571479606579,
+   "true_roi": 0.877760259927929,
+   "abs_error": 3.354806321949474,
+   "covered90": false
+  },
+  {
+   "channel": "meta_retargeting",
+   "method": "ols_naive",
+   "roi_mean": 7.43644808246172,
+   "roi_p05": 5.3937729455565275,
+   "roi_p95": 9.479123219366912,
+   "true_roi": 0.4461489331982273,
+   "abs_error": 6.9902991492634925,
+   "covered90": false
+  },
+  {
+   "channel": "meta_retargeting",
+   "method": "last_click",
+   "roi_mean": 4.594553098052159,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 0.4461489331982273,
+   "abs_error": 4.148404164853932,
+   "covered90": null
+  },
+  {
+   "channel": "meta_retargeting",
+   "method": "markov",
+   "roi_mean": 3.40817398682643,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 0.4461489331982273,
+   "abs_error": 2.962025053628203,
+   "covered90": null
+  },
+  {
+   "channel": "meta_retargeting",
+   "method": "bayes_default",
+   "roi_mean": 1.7633123105725421,
+   "roi_p05": 0.3225664491380873,
+   "roi_p95": 4.531397054472358,
+   "true_roi": 0.4461489331982273,
+   "abs_error": 1.3171633773743148,
+   "covered90": true
+  },
+  {
+   "channel": "meta_retargeting",
+   "method": "bayes_dag",
+   "roi_mean": 0.4563965499944194,
+   "roi_p05": 0.14020615867944702,
+   "roi_p95": 1.056728002634311,
+   "true_roi": 0.4461489331982273,
+   "abs_error": 0.010247616796192127,
+   "covered90": true
+  },
+  {
+   "channel": "meta_retargeting",
+   "method": "bayes_dag_calibrated",
+   "roi_mean": 0.4531341480407235,
+   "roi_p05": 0.1407527859406247,
+   "roi_p95": 1.0233465728487559,
+   "true_roi": 0.4461489331982273,
+   "abs_error": 0.006985214842496201,
+   "covered90": true
+  },
+  {
+   "channel": "search_brand",
+   "method": "ols_naive",
+   "roi_mean": -2.7866092394169524,
+   "roi_p05": -9.405714434421615,
+   "roi_p95": 3.832495955587709,
+   "true_roi": 0.28418213435665896,
+   "abs_error": 3.0707913737736114,
+   "covered90": true
+  },
+  {
+   "channel": "search_brand",
+   "method": "last_click",
+   "roi_mean": 16.071090891771345,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 0.28418213435665896,
+   "abs_error": 15.786908757414686,
+   "covered90": null
+  },
+  {
+   "channel": "search_brand",
+   "method": "markov",
+   "roi_mean": 10.428936521978963,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 0.28418213435665896,
+   "abs_error": 10.144754387622305,
+   "covered90": null
+  },
+  {
+   "channel": "search_brand",
+   "method": "bayes_default",
+   "roi_mean": 2.352764382614149,
+   "roi_p05": 0.3198706841405133,
+   "roi_p95": 7.437451087781421,
+   "true_roi": 0.28418213435665896,
+   "abs_error": 2.06858224825749,
+   "covered90": false
+  },
+  {
+   "channel": "search_brand",
+   "method": "bayes_dag",
+   "roi_mean": 0.4319785766194989,
+   "roi_p05": 0.13823138849034303,
+   "roi_p95": 0.9457521234723768,
+   "true_roi": 0.28418213435665896,
+   "abs_error": 0.14779644226283994,
+   "covered90": true
+  },
+  {
+   "channel": "search_brand",
+   "method": "bayes_dag_calibrated",
+   "roi_mean": 0.4482420712559432,
+   "roi_p05": 0.13839120863504895,
+   "roi_p95": 1.0137866146140417,
+   "true_roi": 0.28418213435665896,
+   "abs_error": 0.16405993689928422,
+   "covered90": true
+  },
+  {
+   "channel": "search_nonbrand",
+   "method": "ols_naive",
+   "roi_mean": 0.14421937293902998,
+   "roi_p05": -1.6125580934520876,
+   "roi_p95": 1.9009968393301475,
+   "true_roi": 1.2906515470574922,
+   "abs_error": 1.1464321741184622,
+   "covered90": true
+  },
+  {
+   "channel": "search_nonbrand",
+   "method": "last_click",
+   "roi_mean": 0.752921383655986,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 1.2906515470574922,
+   "abs_error": 0.5377301634015061,
+   "covered90": null
+  },
+  {
+   "channel": "search_nonbrand",
+   "method": "markov",
+   "roi_mean": 1.3281665999702958,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 1.2906515470574922,
+   "abs_error": 0.03751505291280366,
+   "covered90": null
+  },
+  {
+   "channel": "search_nonbrand",
+   "method": "bayes_default",
+   "roi_mean": 1.3326627918222949,
+   "roi_p05": 0.2745128909224496,
+   "roi_p95": 3.290862202167385,
+   "true_roi": 1.2906515470574922,
+   "abs_error": 0.04201124476480267,
+   "covered90": true
+  },
+  {
+   "channel": "search_nonbrand",
+   "method": "bayes_dag",
+   "roi_mean": 1.4445531831225786,
+   "roi_p05": 0.28077784685786644,
+   "roi_p95": 3.7615683112561316,
+   "true_roi": 1.2906515470574922,
+   "abs_error": 0.15390163606508644,
+   "covered90": true
+  },
+  {
+   "channel": "search_nonbrand",
+   "method": "bayes_dag_calibrated",
+   "roi_mean": 1.2130005064874396,
+   "roi_p05": 0.3241167821336037,
+   "roi_p95": 2.4204709715663344,
+   "true_roi": 1.2906515470574922,
+   "abs_error": 0.07765104057005257,
+   "covered90": true
+  },
+  {
+   "channel": "tiktok",
+   "method": "ols_naive",
+   "roi_mean": 2.185027484453211,
+   "roi_p05": 0.5332708129086026,
+   "roi_p95": 3.8367841559978197,
+   "true_roi": 3.230122933013816,
+   "abs_error": 1.045095448560605,
+   "covered90": true
+  },
+  {
+   "channel": "tiktok",
+   "method": "last_click",
+   "roi_mean": 0.9925217619828746,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 3.230122933013816,
+   "abs_error": 2.2376011710309416,
+   "covered90": null
+  },
+  {
+   "channel": "tiktok",
+   "method": "markov",
+   "roi_mean": 1.513994076255996,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 3.230122933013816,
+   "abs_error": 1.7161288567578201,
+   "covered90": null
+  },
+  {
+   "channel": "tiktok",
+   "method": "bayes_default",
+   "roi_mean": 2.4192915340861783,
+   "roi_p05": 1.1002640296422412,
+   "roi_p95": 3.712248446180825,
+   "true_roi": 3.230122933013816,
+   "abs_error": 0.8108313989276379,
+   "covered90": true
+  },
+  {
+   "channel": "tiktok",
+   "method": "bayes_dag",
+   "roi_mean": 2.9314223876782726,
+   "roi_p05": 1.7291896612989637,
+   "roi_p95": 4.073861246742097,
+   "true_roi": 3.230122933013816,
+   "abs_error": 0.2987005453355436,
+   "covered90": true
+  },
+  {
+   "channel": "tiktok",
+   "method": "bayes_dag_calibrated",
+   "roi_mean": 3.587822370297399,
+   "roi_p05": 2.0154424653979457,
+   "roi_p95": 5.060404728360238,
+   "true_roi": 3.230122933013816,
+   "abs_error": 0.3576994372835829,
+   "covered90": true
+  },
+  {
+   "channel": "youtube",
+   "method": "ols_naive",
+   "roi_mean": 2.9429175893627897,
+   "roi_p05": 2.3586012339691056,
+   "roi_p95": 3.527233944756474,
+   "true_roi": 3.147295443810302,
+   "abs_error": 0.20437785444751233,
+   "covered90": true
+  },
+  {
+   "channel": "youtube",
+   "method": "last_click",
+   "roi_mean": 0.45471794444413804,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 3.147295443810302,
+   "abs_error": 2.692577499366164,
+   "covered90": null
+  },
+  {
+   "channel": "youtube",
+   "method": "markov",
+   "roi_mean": 0.6692953274117559,
+   "roi_p05": null,
+   "roi_p95": null,
+   "true_roi": 3.147295443810302,
+   "abs_error": 2.478000116398546,
+   "covered90": null
+  },
+  {
+   "channel": "youtube",
+   "method": "bayes_default",
+   "roi_mean": 2.428456991004079,
+   "roi_p05": 2.06670524234697,
+   "roi_p95": 2.7238805519621128,
+   "true_roi": 3.147295443810302,
+   "abs_error": 0.718838452806223,
+   "covered90": false
+  },
+  {
+   "channel": "youtube",
+   "method": "bayes_dag",
+   "roi_mean": 2.5391648382652643,
+   "roi_p05": 2.3236335069418925,
+   "roi_p95": 2.773724962697618,
+   "true_roi": 3.147295443810302,
+   "abs_error": 0.6081306055450377,
+   "covered90": false
+  },
+  {
+   "channel": "youtube",
+   "method": "bayes_dag_calibrated",
+   "roi_mean": 3.1459749066508613,
+   "roi_p05": 2.828893633148196,
+   "roi_p95": 3.4656792748678513,
+   "true_roi": 3.147295443810302,
+   "abs_error": 0.0013205371594406934,
+   "covered90": true
+  }
+ ],
+ "voi": [
+  {
+   "channel": "search_nonbrand",
+   "evsi": 8453.535073430787,
+   "evsi_mc_se": 1125.2378473153112,
+   "expected_budget_moved": 18613.333333333332,
+   "prob_moves_5pct_of_budget": 0.16,
+   "mean_effective_sample_size": 569.3494552248815,
+   "predicted_effect_mean": -104669.12136566982,
+   "predicted_effect_p10": -210307.11255326463,
+   "predicted_effect_p90": -29808.850232192803,
+   "sigma": 48472.26349207374,
+   "n_sim": 150,
+   "x_weekly": 9384.3849331906,
+   "n_weeks": 6,
+   "expected_test_cost": 6191.256189579129,
+   "spend_saved": 15896.01650575312,
+   "net_value": 2262.278883851658,
+   "power_at_predicted_effect": 0.5528109378826668,
+   "design": {
+    "sigma_national": 48472.26349207374,
+    "rel_sd": 0.04421275150700948,
+    "placebo_windows": 62,
+    "holdout_spend_share": 0.2823132366322742,
+    "x_national_weekly": 9384.3849331906,
+    "test_weeks": 6,
+    "window_weeks": 8
+   },
+   "rank": 1
+  },
+  {
+   "channel": "meta_prospecting",
+   "evsi": 2056.54258180677,
+   "evsi_mc_se": 835.910669177696,
+   "expected_budget_moved": 10373.333333333334,
+   "prob_moves_5pct_of_budget": 0.04666666666666667,
+   "mean_effective_sample_size": 299.2073781231042,
+   "predicted_effect_mean": -313380.91951585666,
+   "predicted_effect_p10": -507628.02425969974,
+   "predicted_effect_p90": -124838.8778407207,
+   "sigma": 48741.71222028018,
+   "n_sim": 150,
+   "x_weekly": 11804.139108253281,
+   "n_weeks": 6,
+   "expected_test_cost": 45879.79979666764,
+   "spend_saved": 19884.255250460203,
+   "net_value": -43823.257214860874,
+   "power_at_predicted_effect": 0.9424809958180318,
+   "design": {
+    "sigma_national": 48741.71222028018,
+    "rel_sd": 0.04421275150700948,
+    "placebo_windows": 62,
+    "holdout_spend_share": 0.28075258274669407,
+    "x_national_weekly": 11804.139108253281,
+    "test_weeks": 6,
+    "window_weeks": 8
+   },
+   "rank": 2
+  },
+  {
+   "channel": "tiktok",
+   "evsi": 493.73126482601043,
+   "evsi_mc_se": 70.25065351626579,
+   "expected_budget_moved": 5493.333333333333,
+   "prob_moves_5pct_of_budget": 0.0,
+   "mean_effective_sample_size": 753.741483646144,
+   "predicted_effect_mean": -146792.69704845175,
+   "predicted_effect_p10": -190721.20335369906,
+   "predicted_effect_p90": -99644.36723539756,
+   "sigma": 48978.4684925849,
+   "n_sim": 150,
+   "x_weekly": 6502.866647632521,
+   "n_weeks": 6,
+   "expected_test_cost": 19754.812285838245,
+   "spend_saved": 10901.228397487948,
+   "net_value": -19261.081021012233,
+   "power_at_predicted_effect": 0.8598614070037393,
+   "design": {
+    "sigma_national": 48978.4684925849,
+    "rel_sd": 0.04421275150700948,
+    "placebo_windows": 62,
+    "holdout_spend_share": 0.27939545711625313,
+    "x_national_weekly": 6502.866647632521,
+    "test_weeks": 6,
+    "window_weeks": 8
+   },
+   "rank": 3
+  },
+  {
+   "channel": "youtube",
+   "evsi": 22.72002056631182,
+   "evsi_mc_se": 2.668183913790307,
+   "expected_budget_moved": 1100.0,
+   "prob_moves_5pct_of_budget": 0.0,
+   "mean_effective_sample_size": 957.9014149169926,
+   "predicted_effect_mean": -165777.67872291975,
+   "predicted_effect_p10": -179382.2515843416,
+   "predicted_effect_p90": -152507.46656502227,
+   "sigma": 49147.57655667392,
+   "n_sim": 150,
+   "x_weekly": 7381.22065828035,
+   "n_weeks": 6,
+   "expected_test_cost": 22170.61968608337,
+   "spend_saved": 12331.101498564716,
+   "net_value": -22147.89966551706,
+   "power_at_predicted_effect": 0.954581977010247,
+   "design": {
+    "sigma_national": 49147.57655667392,
+    "rel_sd": 0.04421275150700948,
+    "placebo_windows": 62,
+    "holdout_spend_share": 0.27843410707260013,
+    "x_national_weekly": 7381.22065828035,
+    "test_weeks": 6,
+    "window_weeks": 8
+   },
+   "rank": 4
+  },
+  {
+   "channel": "meta_retargeting",
+   "evsi": 2.303097729338333,
+   "evsi_mc_se": 1.4848705186645794,
+   "expected_budget_moved": 93.33333333333333,
+   "prob_moves_5pct_of_budget": 0.0,
+   "mean_effective_sample_size": 949.516981790845,
+   "predicted_effect_mean": -16464.522115566375,
+   "predicted_effect_p10": -30147.70412200397,
+   "predicted_effect_p90": -6241.668964254131,
+   "sigma": 49482.42537419269,
+   "n_sim": 150,
+   "x_weekly": 4820.0658894235785,
+   "n_weeks": 6,
+   "expected_test_cost": -4594.518040736045,
+   "spend_saved": 7997.933492847252,
+   "net_value": 4596.821138465383,
+   "power_at_predicted_effect": 0.12678343105121287,
+   "design": {
+    "sigma_national": 49482.42537419269,
+    "rel_sd": 0.04421275150700948,
+    "placebo_windows": 62,
+    "holdout_spend_share": 0.27654993646444764,
+    "x_national_weekly": 4820.0658894235785,
+    "test_weeks": 6,
+    "window_weeks": 8
+   },
+   "rank": 5
+  },
+  {
+   "channel": "search_brand",
+   "evsi": 0.006138505900744349,
+   "evsi_mc_se": 0.0051616279613272194,
+   "expected_budget_moved": 13.333333333333334,
+   "prob_moves_5pct_of_budget": 0.0,
+   "mean_effective_sample_size": 965.3742856592468,
+   "predicted_effect_mean": -15165.210145830872,
+   "predicted_effect_p10": -26622.34676747138,
+   "predicted_effect_p90": -6058.300867956104,
+   "sigma": 49390.32220176807,
+   "n_sim": 150,
+   "x_weekly": 4744.27480277842,
+   "n_weeks": 6,
+   "expected_test_cost": -4746.175590486631,
+   "spend_saved": 7886.853416445195,
+   "net_value": 4746.181728992532,
+   "power_at_predicted_effect": 0.12233038380453827,
+   "design": {
+    "sigma_national": 49390.32220176807,
+    "rel_sd": 0.04421275150700948,
+    "placebo_windows": 62,
+    "holdout_spend_share": 0.2770656473435577,
+    "x_national_weekly": 4744.27480277842,
+    "test_weeks": 6,
+    "window_weeks": 8
+   },
+   "rank": 6
+  }
+ ],
+ "geolift": {
+  "channel": "search_nonbrand",
+  "holdout": [
+   "R03",
+   "R04",
+   "R10"
+  ],
+  "test_weeks": 6,
+  "window_weeks": 8,
+  "delta_y": -22170.671643083275,
+  "counterfactual": 374949.43517468515,
+  "se": 16577.546205071914,
+  "ci90": [
+   -49438.30864445142,
+   5096.965358284873
+  ],
+  "p_value": 0.18109483311940855,
+  "holdout_spend_share": 0.28231323663227414,
+  "x_national_weekly": 9384.384933190602,
+  "lift_test": {
+   "channel": "search_nonbrand",
+   "x": 9384.384933190602,
+   "delta_x": -9384.384933190602,
+   "delta_y": -78532.1719504126,
+   "sigma": 58720.40008759817,
+   "n_weeks": 6,
+   "source": "simulated geo-lift, holdout R03,R04,R10"
+  },
+  "placebo_windows": 62,
+  "true_delta_y": -19789.625634847398
+ },
+ "diagnostics": {
+  "bayes_default": {
+   "rhat_max": 1.0044830888528855,
+   "ess_bulk_min": 925.2754983170221,
+   "ess_tail_min": 1136.5297154208142,
+   "divergences": 0,
+   "draws_total": 8000,
+   "chains": 4,
+   "draws_kept": 1000,
+   "train": {
+    "mape": 0.04721510976106972,
+    "r2": 0.9193119186922021,
+    "coverage90": 0.9423076923076923
+   },
+   "ppc_pvalue_sd": 0.564,
+   "ppc_pvalue_max": 0.859,
+   "converged": true
+  },
+  "bayes_dag": {
+   "rhat_max": 1.006211146843691,
+   "ess_bulk_min": 469.3350047091371,
+   "ess_tail_min": 521.9292494164029,
+   "divergences": 0,
+   "draws_total": 8000,
+   "chains": 4,
+   "draws_kept": 1000,
+   "train": {
+    "mape": 0.04708768327126908,
+    "r2": 0.9189865857737449,
+    "coverage90": 0.9358974358974359
+   },
+   "ppc_pvalue_sd": 0.574,
+   "ppc_pvalue_max": 0.879,
+   "converged": true
+  },
+  "bayes_dag_calibrated": {
+   "rhat_max": 1.0104647474104502,
+   "ess_bulk_min": 388.9821356452438,
+   "ess_tail_min": 412.60515594474424,
+   "divergences": 0,
+   "draws_total": 8000,
+   "chains": 4,
+   "draws_kept": 1000,
+   "train": {
+    "mape": 0.047196978135204716,
+    "r2": 0.9186037396010128,
+    "coverage90": 0.9294871794871795
+   },
+   "ppc_pvalue_sd": 0.559,
+   "ppc_pvalue_max": 0.886,
+   "converged": false
+  }
+ },
+ "holdout": {},
+ "plans": {
+  "current": {
+   "meta_prospecting": 161048.64665838666,
+   "meta_retargeting": 65762.10947507106,
+   "search_brand": 64728.06100944116,
+   "search_nonbrand": 128034.96124126426,
+   "tiktok": 88721.2412016507,
+   "youtube": 100704.98041418621
+  },
+  "bayes_default": {
+   "meta_prospecting": 242000.0,
+   "meta_retargeting": 50000.0,
+   "search_brand": 70000.0,
+   "search_nonbrand": 64000.0,
+   "tiktok": 95000.0,
+   "youtube": 88000.0
+  },
+  "bayes_dag": {
+   "meta_prospecting": 242000.0,
+   "meta_retargeting": 32000.0,
+   "search_brand": 32000.0,
+   "search_nonbrand": 78000.0,
+   "tiktok": 126000.0,
+   "youtube": 99000.0
+  },
+  "bayes_dag_calibrated": {
+   "meta_prospecting": 242000.0,
+   "meta_retargeting": 32000.0,
+   "search_brand": 32000.0,
+   "search_nonbrand": 64000.0,
+   "tiktok": 134000.0,
+   "youtube": 105000.0
+  },
+  "last_click": {
+   "meta_prospecting": 80000.0,
+   "meta_retargeting": 99000.0,
+   "search_brand": 98000.0,
+   "search_nonbrand": 148000.0,
+   "tiktok": 134000.0,
+   "youtube": 50000.0
+  }
+ },
+ "graded": {
+  "objective": "profit_52w",
+  "true_optimum": {
+   "search_nonbrand": 99000.0,
+   "search_brand": 32000.0,
+   "meta_prospecting": 169000.0,
+   "meta_retargeting": 32000.0,
+   "tiktok": 134000.0,
+   "youtube": 143000.0
+  },
+  "true_value_optimum": 169507.15746597352,
+  "plans": {
+   "current": {
+    "true_value": 87054.64312638919,
+    "regret": 82452.51433958433
+   },
+   "bayes_default": {
+    "true_value": 83514.69061631415,
+    "regret": 85992.46684965937
+   },
+   "bayes_dag": {
+    "true_value": 147258.98805331625,
+    "regret": 22248.16941265727
+   },
+   "bayes_dag_calibrated": {
+    "true_value": 153963.04500780388,
+    "regret": 15544.112458169635
+   },
+   "last_click": {
+    "true_value": 58563.9174858545,
+    "regret": 110943.23998011902
+   }
+  }
+ },
+ "optimizer": {
+  "bayes_default": {
+   "prob_beats_current": 0.822,
+   "expected_uplift": {
+    "mean": 180952.90273102708,
+    "p10": -48061.717672805185,
+    "p50": 187351.4630452575,
+    "p90": 391416.21499781235
+   }
+  },
+  "bayes_dag": {
+   "prob_beats_current": 0.948,
+   "expected_uplift": {
+    "mean": 280464.34397835156,
+    "p10": 57525.98279533515,
+    "p50": 294694.4622504446,
+    "p90": 472541.92765087145
+   }
+  },
+  "bayes_dag_calibrated": {
+   "prob_beats_current": 0.972,
+   "expected_uplift": {
+    "mean": 296696.18058356165,
+    "p10": 69841.37401106022,
+    "p50": 310148.4792007437,
+    "p90": 493362.6899874484
+   }
+  }
+ },
+ "seconds": 111.02972412109375,
+ "regime": "collinear",
+ "world": {
+  "world_seed": 3,
+  "regime": "collinear",
+  "channels": {
+   "search_nonbrand": {
+    "target_roi": 1.304256870797601,
+    "adstock_decay": 0.35531600443825934,
+    "half_sat_ratio": 0.8262566621548131,
+    "hill_slope": 1.1365251409192059,
+    "annual_spend": 509865.2199568691,
+    "seasonal_tilt": 1.365795821302367,
+    "weekly_volatility": 0.029503462656922764,
+    "launch_week": 0
+   },
+   "search_brand": {
+    "target_roi": 0.28418213435665896,
+    "adstock_decay": 0.24209801605018894,
+    "half_sat_ratio": 1.4759270309637442,
+    "hill_slope": 1.2709185930085944,
+    "annual_spend": 237686.72152558633,
+    "seasonal_tilt": 0.0,
+    "weekly_volatility": 0.08,
+    "launch_week": 0
+   },
+   "meta_prospecting": {
+    "target_roi": 0.8777602599279292,
+    "adstock_decay": 0.3098419214122909,
+    "half_sat_ratio": 1.4842884753258767,
+    "hill_slope": 1.4886987772653928,
+    "annual_spend": 628930.7748445172,
+    "seasonal_tilt": 1.2407872140333938,
+    "weekly_volatility": 0.035818870789994815,
+    "launch_week": 0
+   },
+   "meta_retargeting": {
+    "target_roi": 0.44614893319822735,
+    "adstock_decay": 0.17898163636624914,
+    "half_sat_ratio": 1.0348895074805344,
+    "hill_slope": 1.912358429604484,
+    "annual_spend": 248488.4136919497,
+    "seasonal_tilt": 0.0,
+    "weekly_volatility": 0.1,
+    "launch_week": 0
+   },
+   "tiktok": {
+    "target_roi": 3.2710893192027433,
+    "adstock_decay": 0.5053255150447292,
+    "half_sat_ratio": 2.3942036116384213,
+    "hill_slope": 1.1468214864841342,
+    "annual_spend": 347330.4076481423,
+    "seasonal_tilt": 1.3123177232920618,
+    "weekly_volatility": 0.021993552802046623,
+    "launch_week": 3
+   },
+   "youtube": {
+    "target_roi": 3.147295443810302,
+    "adstock_decay": 0.024943911712795395,
+    "half_sat_ratio": 1.0803374153670664,
+    "hill_slope": 1.0505061534439644,
+    "annual_spend": 337917.6964725096,
+    "seasonal_tilt": 1.254996983330095,
+    "weekly_volatility": 0.023062722765333898,
+    "launch_week": 0
+   }
+  }
+ },
+ "log": [
+  "  fit bayes_default: 48s rhat 1.004 div 0",
+  "  fit bayes_dag: 30s rhat 1.006 div 0",
+  "  VOI top: search_nonbrand; geo-lift \u0394y -22,171 (true -19,790) se 16,578",
+  "  done in 111s"
+ ]
+}

@@ -1,0 +1,36 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/arfaanjeddy/Desktop/Analytics Suite Marketing/.claude/worktrees/agent-a3014383346864f03/model_runs/scorecard-24w-9a760623/.pytensor-1/lazylinker_ext/lazylinker_ext.so'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _PyInit_lazylinker_ext, symObjAddr: 0x0, symBinAddr: 0x3300, symSize: 0xD0 }
+  - { offsetInCU: 0x53, offset: 0x53, size: 0x8, addend: 0x0, symName: __ZL30lazylinker_ext_CLazyLinkerType, symObjAddr: 0x40F0, symBinAddr: 0xC118, symSize: 0x0 }
+  - { offsetInCU: 0xC67, offset: 0xC67, size: 0x8, addend: 0x0, symName: __ZL16CLazyLinker_callP7_objectS0_S0_, symObjAddr: 0x424, symBinAddr: 0x3724, symSize: 0xC74 }
+  - { offsetInCU: 0xC92, offset: 0xC92, size: 0x8, addend: 0x0, symName: __ZZL16CLazyLinker_callP7_objectS0_S0_E6kwlist, symObjAddr: 0x4488, symBinAddr: 0xC4B0, symSize: 0x0 }
+  - { offsetInCU: 0x11CC, offset: 0x11CC, size: 0x8, addend: 0x0, symName: __ZL19CLazyLinker_members, symObjAddr: 0x42F8, symBinAddr: 0xC320, symSize: 0x0 }
+  - { offsetInCU: 0x11F2, offset: 0x11F2, size: 0x8, addend: 0x0, symName: __ZL18CLazyLinker_getset, symObjAddr: 0x4438, symBinAddr: 0xC460, symSize: 0x0 }
+  - { offsetInCU: 0x120B, offset: 0x120B, size: 0x8, addend: 0x0, symName: __ZL16CLazyLinker_initP11CLazyLinkerP7_objectS2_, symObjAddr: 0x1098, symBinAddr: 0x4398, symSize: 0x144C }
+  - { offsetInCU: 0x1234, offset: 0x1234, size: 0x8, addend: 0x0, symName: __ZZL16CLazyLinker_initP11CLazyLinkerP7_objectS2_E6kwlist, symObjAddr: 0x44A8, symBinAddr: 0xC4D0, symSize: 0x0 }
+  - { offsetInCU: 0x1711, offset: 0x1711, size: 0x8, addend: 0x0, symName: __ZL9moduledef, symObjAddr: 0x4290, symBinAddr: 0xC2B8, symSize: 0x0 }
+  - { offsetInCU: 0x1822, offset: 0x1822, size: 0x8, addend: 0x0, symName: __ZL22lazylinker_ext_methods, symObjAddr: 0x4550, symBinAddr: 0xC578, symSize: 0x0 }
+  - { offsetInCU: 0x1CC8, offset: 0x1CC8, size: 0x8, addend: 0x0, symName: _PyInit_lazylinker_ext, symObjAddr: 0x0, symBinAddr: 0x3300, symSize: 0xD0 }
+  - { offsetInCU: 0x1D56, offset: 0x1D56, size: 0x8, addend: 0x0, symName: __ZL19CLazyLinker_deallocP7_object, symObjAddr: 0xD0, symBinAddr: 0x33D0, symSize: 0x354 }
+  - { offsetInCU: 0x1E56, offset: 0x1E56, size: 0x8, addend: 0x0, symName: __ZL15CLazyLinker_newP11_typeobjectP7_objectS2_, symObjAddr: 0x24E4, symBinAddr: 0x57E4, symSize: 0x160 }
+  - { offsetInCU: 0x1EAC, offset: 0x1EAC, size: 0x8, addend: 0x0, symName: __ZL10Py_XDECREFP7_object, symObjAddr: 0x2644, symBinAddr: 0x5944, symSize: 0x94 }
+  - { offsetInCU: 0x1F12, offset: 0x1F12, size: 0x8, addend: 0x0, symName: __ZL7Py_TYPEP7_object, symObjAddr: 0x26D8, symBinAddr: 0x59D8, symSize: 0x18 }
+  - { offsetInCU: 0x1F3E, offset: 0x1F3E, size: 0x8, addend: 0x0, symName: __ZL17PyType_HasFeatureP11_typeobjectm, symObjAddr: 0x26F0, symBinAddr: 0x59F0, symSize: 0x34 }
+  - { offsetInCU: 0x1F8A, offset: 0x1F8A, size: 0x8, addend: 0x0, symName: __ZL13lazy_rec_evalP11CLazyLinkerlP7_objectS2_, symObjAddr: 0x2724, symBinAddr: 0x5A24, symSize: 0xD3C }
+  - { offsetInCU: 0x23DD, offset: 0x23DD, size: 0x8, addend: 0x0, symName: __ZL6pycallP11CLazyLinkerli, symObjAddr: 0x3460, symBinAddr: 0x6760, symSize: 0x1C4 }
+  - { offsetInCU: 0x24AF, offset: 0x24AF, size: 0x8, addend: 0x0, symName: __ZL6c_callP11CLazyLinkerli, symObjAddr: 0x3624, symBinAddr: 0x6924, symSize: 0x410 }
+  - { offsetInCU: 0x2664, offset: 0x2664, size: 0x8, addend: 0x0, symName: __ZL21set_position_of_errorP11CLazyLinkeri, symObjAddr: 0x3A34, symBinAddr: 0x6D34, symSize: 0x3C }
+  - { offsetInCU: 0x269D, offset: 0x269D, size: 0x8, addend: 0x0, symName: __ZL6pytimePK7timeval, symObjAddr: 0x3A70, symBinAddr: 0x6D70, symSize: 0x78 }
+  - { offsetInCU: 0x26D7, offset: 0x26D7, size: 0x8, addend: 0x0, symName: __ZL15PyList_SET_ITEMP7_objectlS0_, symObjAddr: 0x3AE8, symBinAddr: 0x6DE8, symSize: 0x84 }
+  - { offsetInCU: 0x2729, offset: 0x2729, size: 0x8, addend: 0x0, symName: __ZL24CLazyLinker_get_allow_gcP11CLazyLinkerPv, symObjAddr: 0x3B6C, symBinAddr: 0x6E6C, symSize: 0x2C }
+  - { offsetInCU: 0x2766, offset: 0x2766, size: 0x8, addend: 0x0, symName: __ZL24CLazyLinker_set_allow_gcP11CLazyLinkerP7_objectPv, symObjAddr: 0x3B98, symBinAddr: 0x6E98, symSize: 0x94 }
+  - { offsetInCU: 0x27B2, offset: 0x27B2, size: 0x8, addend: 0x0, symName: __ZL10Py_IS_TYPEP7_objectP11_typeobject, symObjAddr: 0x3C2C, symBinAddr: 0x6F2C, symSize: 0x38 }
+  - { offsetInCU: 0x27EC, offset: 0x27EC, size: 0x8, addend: 0x0, symName: __ZL16NpyCapsule_CheckP7_object, symObjAddr: 0x3C64, symBinAddr: 0x6F64, symSize: 0x2C }
+  - { offsetInCU: 0x281A, offset: 0x281A, size: 0x8, addend: 0x0, symName: __ZL20NpyCapsule_AsVoidPtrP7_object, symObjAddr: 0x3C90, symBinAddr: 0x6F90, symSize: 0x4C }
+  - { offsetInCU: 0x2857, offset: 0x2857, size: 0x8, addend: 0x0, symName: __ZL18NpyCapsule_GetDescP7_object, symObjAddr: 0x3CDC, symBinAddr: 0x6FDC, symSize: 0x24 }
+  - { offsetInCU: 0x2885, offset: 0x2885, size: 0x8, addend: 0x0, symName: __ZL22unpack_list_of_ssize_tP7_objectPPlS1_PKc, symObjAddr: 0x3D00, symBinAddr: 0x7000, symSize: 0x1C8 }
+  - { offsetInCU: 0x293D, offset: 0x293D, size: 0x8, addend: 0x0, symName: __ZL31unpack_nested_tuples_of_ssize_tP7_objectPPlS1_PKc, symObjAddr: 0x3EC8, symBinAddr: 0x71C8, symSize: 0x1E4 }
+  - { offsetInCU: 0x2A1F, offset: 0x2A1F, size: 0x8, addend: 0x0, symName: __ZL11get_versionP7_objectS0_, symObjAddr: 0x40AC, symBinAddr: 0x73AC, symSize: 0x34 }
+...

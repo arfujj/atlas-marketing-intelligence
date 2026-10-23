@@ -1,0 +1,1354 @@
+{
+ "n_worlds": 24,
+ "regimes": {
+  "standard": 14,
+  "weak_signal": 5,
+  "collinear": 3,
+  "long_carryover": 2
+ },
+ "roi_by_method": [
+  {
+   "method": "bayes_dag",
+   "mean_abs_error": 0.45696324978637404,
+   "median_abs_error": 0.30808653947117304,
+   "mean_rel_error": 0.5253025186934215,
+   "coverage90": 0.8888888888888888
+  },
+  {
+   "method": "bayes_dag_calibrated",
+   "mean_abs_error": 0.42143005347165796,
+   "median_abs_error": 0.251965819067353,
+   "mean_rel_error": 0.47450869823186703,
+   "coverage90": 0.8888888888888888
+  },
+  {
+   "method": "bayes_default",
+   "mean_abs_error": 1.052344953569613,
+   "median_abs_error": 0.7610112561810045,
+   "mean_rel_error": 2.3296490042764497,
+   "coverage90": 0.8333333333333334
+  },
+  {
+   "method": "last_click",
+   "mean_abs_error": 4.3092180987889375,
+   "median_abs_error": 1.370982006440446,
+   "mean_rel_error": 10.960022943774046,
+   "coverage90": null
+  },
+  {
+   "method": "markov",
+   "mean_abs_error": 2.847681967461505,
+   "median_abs_error": 0.8827595446583367,
+   "mean_rel_error": 7.204897417955918,
+   "coverage90": null
+  },
+  {
+   "method": "ols_naive",
+   "mean_abs_error": 4.545811263867488,
+   "median_abs_error": 1.2453197230601762,
+   "mean_rel_error": 12.044918375791193,
+   "coverage90": 0.2916666666666667
+  }
+ ],
+ "roi_error_by_regime": [
+  {
+   "regime": "collinear",
+   "bayes_dag": 0.498,
+   "bayes_dag_calibrated": 0.4646,
+   "bayes_default": 0.9133,
+   "last_click": 4.4437,
+   "markov": 2.9198,
+   "ols_naive": 2.6539
+  },
+  {
+   "regime": "long_carryover",
+   "bayes_dag": 0.3996,
+   "bayes_dag_calibrated": 0.3872,
+   "bayes_default": 0.8015,
+   "last_click": 4.2955,
+   "markov": 2.8088,
+   "ols_naive": 4.719
+  },
+  {
+   "regime": "standard",
+   "bayes_dag": 0.4703,
+   "bayes_dag_calibrated": 0.4741,
+   "bayes_default": 1.178,
+   "last_click": 4.1481,
+   "markov": 2.7295,
+   "ols_naive": 4.5445
+  },
+  {
+   "regime": "weak_signal",
+   "bayes_dag": 0.4179,
+   "bayes_dag_calibrated": 0.2618,
+   "bayes_default": 0.8841,
+   "last_click": 4.6851,
+   "markov": 3.1509,
+   "ols_naive": 5.6152
+  }
+ ],
+ "roi_error_by_channel": [
+  {
+   "channel": "meta_prospecting",
+   "bayes_dag": 0.8043,
+   "bayes_dag_calibrated": 0.7122,
+   "bayes_default": 0.7285,
+   "last_click": 0.8055,
+   "markov": 0.6201,
+   "ols_naive": 0.9616
+  },
+  {
+   "channel": "meta_retargeting",
+   "bayes_dag": 0.2421,
+   "bayes_dag_calibrated": 0.2412,
+   "bayes_default": 1.3321,
+   "last_click": 4.6646,
+   "markov": 3.2391,
+   "ols_naive": 8.6407
+  },
+  {
+   "channel": "search_brand",
+   "bayes_dag": 0.2045,
+   "bayes_dag_calibrated": 0.2162,
+   "bayes_default": 2.7018,
+   "last_click": 17.5789,
+   "markov": 11.0993,
+   "ols_naive": 15.0175
+  },
+  {
+   "channel": "search_nonbrand",
+   "bayes_dag": 0.6375,
+   "bayes_dag_calibrated": 0.6626,
+   "bayes_default": 0.6067,
+   "last_click": 0.8479,
+   "markov": 0.5021,
+   "ols_naive": 0.7976
+  },
+  {
+   "channel": "tiktok",
+   "bayes_dag": 0.4213,
+   "bayes_dag_calibrated": 0.4101,
+   "bayes_default": 0.4921,
+   "last_click": 0.7284,
+   "markov": 0.6278,
+   "ols_naive": 1.1579
+  },
+  {
+   "channel": "youtube",
+   "bayes_dag": 0.432,
+   "bayes_dag_calibrated": 0.2863,
+   "bayes_default": 0.4528,
+   "last_click": 1.23,
+   "markov": 0.9977,
+   "ols_naive": 0.6996
+  }
+ ],
+ "coverage_by_regime": [
+  {
+   "regime": "collinear",
+   "bayes_dag": 0.722,
+   "bayes_dag_calibrated": 0.778,
+   "bayes_default": 0.833,
+   "ols_naive": 0.611
+  },
+  {
+   "regime": "long_carryover",
+   "bayes_dag": 1.0,
+   "bayes_dag_calibrated": 0.917,
+   "bayes_default": 1.0,
+   "ols_naive": 0.083
+  },
+  {
+   "regime": "standard",
+   "bayes_dag": 0.917,
+   "bayes_dag_calibrated": 0.905,
+   "bayes_default": 0.845,
+   "ols_naive": 0.179
+  },
+  {
+   "regime": "weak_signal",
+   "bayes_dag": 0.867,
+   "bayes_dag_calibrated": 0.9,
+   "bayes_default": 0.733,
+   "ols_naive": 0.5
+  }
+ ],
+ "regret_by_plan": [
+  {
+   "plan": "bayes_dag",
+   "mean_regret": 26199.053086525717,
+   "median_regret": 20424.611431357975,
+   "p90_regret": 42422.91251576336,
+   "median_regret_share": 0.3944301931421901,
+   "worse_than_current": 0.125
+  },
+  {
+   "plan": "bayes_dag_calibrated",
+   "mean_regret": 27292.95663887994,
+   "median_regret": 15925.753220872342,
+   "p90_regret": 55028.64489561478,
+   "median_regret_share": 0.41624977797773255,
+   "worse_than_current": 0.08333333333333333
+  },
+  {
+   "plan": "bayes_default",
+   "mean_regret": 55020.70459507601,
+   "median_regret": 30311.69130777176,
+   "p90_regret": 141027.40554438706,
+   "median_regret_share": 1.0211657536749854,
+   "worse_than_current": 0.5
+  },
+  {
+   "plan": "current",
+   "mean_regret": 78940.79888237188,
+   "median_regret": 59677.249774639764,
+   "p90_regret": 166858.676990792,
+   "median_regret_share": 1.0,
+   "worse_than_current": 0.0
+  },
+  {
+   "plan": "last_click",
+   "mean_regret": 104672.73672227665,
+   "median_regret": 91488.70278429487,
+   "p90_regret": 227663.06454230795,
+   "median_regret_share": 1.3870944326631065,
+   "worse_than_current": 0.8333333333333334
+  }
+ ],
+ "regret_rows": [
+  {
+   "seed": 1,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 27144.961100268847,
+   "true_value": -169726.06535776283,
+   "achievable_gain": 27144.961100268847,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 1,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 19979.51635913641,
+   "true_value": -162560.6206166304,
+   "achievable_gain": 27144.961100268847,
+   "regret_share": 0.7360303919882402
+  },
+  {
+   "seed": 1,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 6863.3746569024515,
+   "true_value": -149444.47891439643,
+   "achievable_gain": 27144.961100268847,
+   "regret_share": 0.2528415727526858
+  },
+  {
+   "seed": 1,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 5315.909514590079,
+   "true_value": -147897.01377208406,
+   "achievable_gain": 27144.961100268847,
+   "regret_share": 0.19583411797696146
+  },
+  {
+   "seed": 1,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 96279.88239020377,
+   "true_value": -238860.98664769775,
+   "achievable_gain": 27144.961100268847,
+   "regret_share": 3.5468786282125193
+  },
+  {
+   "seed": 2,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 91188.88502086466,
+   "true_value": 181159.77263974136,
+   "achievable_gain": 91188.88502086466,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 2,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 36482.00550862,
+   "true_value": 235866.65215198603,
+   "achievable_gain": 91188.88502086466,
+   "regret_share": 0.40007074875707344
+  },
+  {
+   "seed": 2,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 25.266616889624856,
+   "true_value": 272323.3910437164,
+   "achievable_gain": 91188.88502086466,
+   "regret_share": 0.0002770800068872832
+  },
+  {
+   "seed": 2,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 16307.39398357505,
+   "true_value": 256041.26367703098,
+   "achievable_gain": 91188.88502086466,
+   "regret_share": 0.17883093953658719
+  },
+  {
+   "seed": 2,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 137829.98305098334,
+   "true_value": 134518.67460962269,
+   "achievable_gain": 91188.88502086466,
+   "regret_share": 1.5114778848260604
+  },
+  {
+   "seed": 3,
+   "regime": "collinear",
+   "plan": "current",
+   "regret": 82452.51433958433,
+   "true_value": 87054.64312638919,
+   "achievable_gain": 82452.51433958433,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 3,
+   "regime": "collinear",
+   "plan": "bayes_default",
+   "regret": 85992.46684965937,
+   "true_value": 83514.69061631415,
+   "achievable_gain": 82452.51433958433,
+   "regret_share": 1.0429332269419411
+  },
+  {
+   "seed": 3,
+   "regime": "collinear",
+   "plan": "bayes_dag",
+   "regret": 22248.16941265727,
+   "true_value": 147258.98805331625,
+   "achievable_gain": 82452.51433958433,
+   "regret_share": 0.2698300905782836
+  },
+  {
+   "seed": 3,
+   "regime": "collinear",
+   "plan": "bayes_dag_calibrated",
+   "regret": 15544.112458169635,
+   "true_value": 153963.04500780388,
+   "achievable_gain": 82452.51433958433,
+   "regret_share": 0.18852199454040322
+  },
+  {
+   "seed": 3,
+   "regime": "collinear",
+   "plan": "last_click",
+   "regret": 110943.23998011902,
+   "true_value": 58563.9174858545,
+   "achievable_gain": 82452.51433958433,
+   "regret_share": 1.3455410167747508
+  },
+  {
+   "seed": 4,
+   "regime": "weak_signal",
+   "plan": "current",
+   "regret": 10762.141203060135,
+   "true_value": -151352.67948832744,
+   "achievable_gain": 10762.141203060135,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 4,
+   "regime": "weak_signal",
+   "plan": "bayes_default",
+   "regret": 8933.645503375214,
+   "true_value": -149524.18378864252,
+   "achievable_gain": 10762.141203060135,
+   "regret_share": 0.8300992650825839
+  },
+  {
+   "seed": 4,
+   "regime": "weak_signal",
+   "plan": "bayes_dag",
+   "regret": 1176.9751415823994,
+   "true_value": -141767.5134268497,
+   "achievable_gain": 10762.141203060135,
+   "regret_share": 0.10936254406769308
+  },
+  {
+   "seed": 4,
+   "regime": "weak_signal",
+   "plan": "bayes_dag_calibrated",
+   "regret": 4554.293794865487,
+   "true_value": -145144.8320801328,
+   "achievable_gain": 10762.141203060135,
+   "regret_share": 0.4231772942702617
+  },
+  {
+   "seed": 4,
+   "regime": "weak_signal",
+   "plan": "last_click",
+   "regret": 21821.571575865528,
+   "true_value": -162412.10986113283,
+   "achievable_gain": 10762.141203060135,
+   "regret_share": 2.027623607991756
+  },
+  {
+   "seed": 5,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 27938.302385422372,
+   "true_value": 27349.509992190207,
+   "achievable_gain": 27938.302385422372,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 5,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 11583.550076125139,
+   "true_value": 43704.26230148744,
+   "achievable_gain": 27938.302385422372,
+   "regret_share": 0.4146118084171498
+  },
+  {
+   "seed": 5,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 38440.7934431117,
+   "true_value": 16847.01893450088,
+   "achievable_gain": 27938.302385422372,
+   "regret_share": 1.3759172949308944
+  },
+  {
+   "seed": 5,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 43745.735515335895,
+   "true_value": 11542.076862276685,
+   "achievable_gain": 27938.302385422372,
+   "regret_share": 1.5657979111200941
+  },
+  {
+   "seed": 5,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 44517.72569346885,
+   "true_value": 10770.086684143731,
+   "achievable_gain": 27938.302385422372,
+   "regret_share": 1.5934298755638523
+  },
+  {
+   "seed": 6,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 172914.07771746712,
+   "true_value": 159307.99679900604,
+   "achievable_gain": 172914.07771746712,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 6,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 187336.29405313492,
+   "true_value": 144885.78046333825,
+   "achievable_gain": 172914.07771746712,
+   "regret_share": 1.0834068372341144
+  },
+  {
+   "seed": 6,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 78775.36355337477,
+   "true_value": 253446.7109630984,
+   "achievable_gain": 172914.07771746712,
+   "regret_share": 0.45557518851697976
+  },
+  {
+   "seed": 6,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 80524.84556520934,
+   "true_value": 251697.22895126382,
+   "achievable_gain": 172914.07771746712,
+   "regret_share": 0.4656928263341454
+  },
+  {
+   "seed": 6,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 219670.03402897925,
+   "true_value": 112552.04048749391,
+   "achievable_gain": 172914.07771746712,
+   "regret_share": 1.2703999404138107
+  },
+  {
+   "seed": 7,
+   "regime": "long_carryover",
+   "plan": "current",
+   "regret": 51348.91346523684,
+   "true_value": -36538.34451006132,
+   "achievable_gain": 51348.91346523684,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 7,
+   "regime": "long_carryover",
+   "plan": "bayes_default",
+   "regret": 63685.48560063158,
+   "true_value": -48874.91664545606,
+   "achievable_gain": 51348.91346523684,
+   "regret_share": 1.2402499157795537
+  },
+  {
+   "seed": 7,
+   "regime": "long_carryover",
+   "plan": "bayes_dag",
+   "regret": 40082.09675659924,
+   "true_value": -25271.52780142372,
+   "achievable_gain": 51348.91346523684,
+   "regret_share": 0.780583152625708
+  },
+  {
+   "seed": 7,
+   "regime": "long_carryover",
+   "plan": "bayes_dag_calibrated",
+   "regret": 35632.62224323099,
+   "true_value": -20822.053288055467,
+   "achievable_gain": 51348.91346523684,
+   "regret_share": 0.6939313772891074
+  },
+  {
+   "seed": 7,
+   "regime": "long_carryover",
+   "plan": "last_click",
+   "regret": 93736.44587024522,
+   "true_value": -78925.8769150697,
+   "achievable_gain": 51348.91346523684,
+   "regret_share": 1.8254806099004355
+  },
+  {
+   "seed": 8,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 213566.82594793168,
+   "true_value": 366061.63585458574,
+   "achievable_gain": 213566.82594793168,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 8,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 30550.320295072743,
+   "true_value": 549078.1415074447,
+   "achievable_gain": 213566.82594793168,
+   "regret_share": 0.1430480607625878
+  },
+  {
+   "seed": 8,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 585.0389657861087,
+   "true_value": 579043.4228367313,
+   "achievable_gain": 213566.82594793168,
+   "regret_share": 0.0027393719187864094
+  },
+  {
+   "seed": 8,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 585.0389657861087,
+   "true_value": 579043.4228367313,
+   "achievable_gain": 213566.82594793168,
+   "regret_share": 0.0027393719187864094
+  },
+  {
+   "seed": 8,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 282537.87122087285,
+   "true_value": 297090.59058164456,
+   "achievable_gain": 213566.82594793168,
+   "regret_share": 1.322948308880877
+  },
+  {
+   "seed": 9,
+   "regime": "weak_signal",
+   "plan": "current",
+   "regret": 4197.840447563212,
+   "true_value": -242656.7503288234,
+   "achievable_gain": 4197.840447563212,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 9,
+   "regime": "weak_signal",
+   "plan": "bayes_default",
+   "regret": 10386.447940707963,
+   "true_value": -248845.35782196815,
+   "achievable_gain": 4197.840447563212,
+   "regret_share": 2.4742359959719646
+  },
+  {
+   "seed": 9,
+   "regime": "weak_signal",
+   "plan": "bayes_dag",
+   "regret": 2179.3252009749995,
+   "true_value": -240638.2350822352,
+   "achievable_gain": 4197.840447563212,
+   "regret_share": 0.5191538907201838
+  },
+  {
+   "seed": 9,
+   "regime": "weak_signal",
+   "plan": "bayes_dag_calibrated",
+   "regret": 2021.6606469664257,
+   "true_value": -240480.5705282266,
+   "achievable_gain": 4197.840447563212,
+   "regret_share": 0.4815953994011305
+  },
+  {
+   "seed": 9,
+   "regime": "weak_signal",
+   "plan": "last_click",
+   "regret": 15571.183311942208,
+   "true_value": -254030.0931932024,
+   "achievable_gain": 4197.840447563212,
+   "regret_share": 3.709331859189899
+  },
+  {
+   "seed": 10,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 121605.27854223896,
+   "true_value": 133797.6954096669,
+   "achievable_gain": 121605.27854223896,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 10,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 67438.96490334,
+   "true_value": 187964.00904856584,
+   "achievable_gain": 121605.27854223896,
+   "regret_share": 0.5545726773687331
+  },
+  {
+   "seed": 10,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 35482.02418062661,
+   "true_value": 219920.94977127924,
+   "achievable_gain": 121605.27854223896,
+   "regret_share": 0.29178029610204886
+  },
+  {
+   "seed": 10,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 29342.54419894633,
+   "true_value": 226060.42975295952,
+   "achievable_gain": 121605.27854223896,
+   "regret_share": 0.24129334310725953
+  },
+  {
+   "seed": 10,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 129786.3423180953,
+   "true_value": 125616.63163381055,
+   "achievable_gain": 121605.27854223896,
+   "regret_share": 1.0672755646294967
+  },
+  {
+   "seed": 11,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 15760.69688279138,
+   "true_value": -82501.1174653408,
+   "achievable_gain": 15760.69688279138,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 11,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 29336.13746910343,
+   "true_value": -96076.55805165284,
+   "achievable_gain": 15760.69688279138,
+   "regret_share": 1.8613477365416915
+  },
+  {
+   "seed": 11,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 8010.827992989463,
+   "true_value": -74751.24857553888,
+   "achievable_gain": 15760.69688279138,
+   "regret_share": 0.5082787932896699
+  },
+  {
+   "seed": 11,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 7650.544116806646,
+   "true_value": -74390.96469935606,
+   "achievable_gain": 15760.69688279138,
+   "regret_share": 0.4854191520655435
+  },
+  {
+   "seed": 11,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 89240.95969834452,
+   "true_value": -155981.38028089394,
+   "achievable_gain": 15760.69688279138,
+   "regret_share": 5.662247066992576
+  },
+  {
+   "seed": 12,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 152729.4086285501,
+   "true_value": 128568.72554334326,
+   "achievable_gain": 152729.4086285501,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 12,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 164149.3385376758,
+   "true_value": 117148.79563421757,
+   "achievable_gain": 152729.4086285501,
+   "regret_share": 1.0747723048997058
+  },
+  {
+   "seed": 12,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 19244.729877758597,
+   "true_value": 262053.40429413476,
+   "achievable_gain": 152729.4086285501,
+   "regret_share": 0.12600539771985428
+  },
+  {
+   "seed": 12,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 18557.95013213827,
+   "true_value": 262740.1840397551,
+   "achievable_gain": 152729.4086285501,
+   "regret_share": 0.12150868846269589
+  },
+  {
+   "seed": 12,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 231088.64904802025,
+   "true_value": 50209.485123873106,
+   "achievable_gain": 152729.4086285501,
+   "regret_share": 1.5130592799586227
+  },
+  {
+   "seed": 13,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 87128.6555791308,
+   "true_value": 201402.98198467697,
+   "achievable_gain": 87128.6555791308,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 13,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 87076.22856004682,
+   "true_value": 201455.40900376096,
+   "achievable_gain": 87128.6555791308,
+   "regret_share": 0.9993982804080298
+  },
+  {
+   "seed": 13,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 33331.676459056325,
+   "true_value": 255199.96110475145,
+   "achievable_gain": 87128.6555791308,
+   "regret_share": 0.38255699273110305
+  },
+  {
+   "seed": 13,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 56521.869167565426,
+   "true_value": 232009.76839624235,
+   "achievable_gain": 87128.6555791308,
+   "regret_share": 0.6487173340604562
+  },
+  {
+   "seed": 13,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 158705.93150624796,
+   "true_value": 129825.70605755983,
+   "achievable_gain": 87128.6555791308,
+   "regret_share": 1.8215124570826209
+  },
+  {
+   "seed": 14,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 121078.24025695001,
+   "true_value": -34666.1599500048,
+   "achievable_gain": 121078.24025695001,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 14,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 3909.047258390623,
+   "true_value": 82503.03304855459,
+   "achievable_gain": 121078.24025695001,
+   "regret_share": 0.03228529957236672
+  },
+  {
+   "seed": 14,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 1158.5575027771847,
+   "true_value": 85253.52280416802,
+   "achievable_gain": 121078.24025695001,
+   "regret_share": 0.009568668162987133
+  },
+  {
+   "seed": 14,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 1576.1926888148737,
+   "true_value": 84835.88761813033,
+   "achievable_gain": 121078.24025695001,
+   "regret_share": 0.013017968261430845
+  },
+  {
+   "seed": 14,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 36245.54931812026,
+   "true_value": 50166.53098882495,
+   "achievable_gain": 121078.24025695001,
+   "regret_share": 0.2993564263999925
+  },
+  {
+   "seed": 15,
+   "regime": "weak_signal",
+   "plan": "current",
+   "regret": 21630.687057287345,
+   "true_value": -169160.24525238157,
+   "achievable_gain": 21630.687057287345,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 15,
+   "regime": "weak_signal",
+   "plan": "bayes_default",
+   "regret": 31590.43440472748,
+   "true_value": -179119.9925998217,
+   "achievable_gain": 21630.687057287345,
+   "regret_share": 1.4604452609878942
+  },
+  {
+   "seed": 15,
+   "regime": "weak_signal",
+   "plan": "bayes_dag",
+   "regret": 22210.879145447776,
+   "true_value": -169740.437340542,
+   "achievable_gain": 21630.687057287345,
+   "regret_share": 1.0268226379783423
+  },
+  {
+   "seed": 15,
+   "regime": "weak_signal",
+   "plan": "bayes_dag_calibrated",
+   "regret": 15235.024377718888,
+   "true_value": -162764.58257281312,
+   "achievable_gain": 21630.687057287345,
+   "regret_share": 0.7043245707993465
+  },
+  {
+   "seed": 15,
+   "regime": "weak_signal",
+   "plan": "last_click",
+   "regret": 24785.964049634378,
+   "true_value": -172315.5222447286,
+   "achievable_gain": 21630.687057287345,
+   "regret_share": 1.1458704008795702
+  },
+  {
+   "seed": 16,
+   "regime": "long_carryover",
+   "plan": "current",
+   "regret": 60370.660409125616,
+   "true_value": 237769.21222952695,
+   "achievable_gain": 60370.660409125616,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 16,
+   "regime": "long_carryover",
+   "plan": "bayes_default",
+   "regret": 67017.67130041315,
+   "true_value": 231122.20133823942,
+   "achievable_gain": 60370.660409125616,
+   "regret_share": 1.1101033324174596
+  },
+  {
+   "seed": 16,
+   "regime": "long_carryover",
+   "plan": "bayes_dag",
+   "regret": 41829.25219518243,
+   "true_value": 256310.62044347014,
+   "achievable_gain": 60370.660409125616,
+   "regret_share": 0.6928738548114264
+  },
+  {
+   "seed": 16,
+   "regime": "long_carryover",
+   "plan": "bayes_dag_calibrated",
+   "regret": 45915.80966091389,
+   "true_value": 252224.06297773868,
+   "achievable_gain": 60370.660409125616,
+   "regret_share": 0.7605649722853333
+  },
+  {
+   "seed": 16,
+   "regime": "long_carryover",
+   "plan": "last_click",
+   "regret": 48045.070582929824,
+   "true_value": 250094.80205572274,
+   "achievable_gain": 60370.660409125616,
+   "regret_share": 0.7958347690307417
+  },
+  {
+   "seed": 17,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 57174.691928604174,
+   "true_value": 7519.902655291189,
+   "achievable_gain": 57174.691928604174,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 17,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 86025.24004760689,
+   "true_value": -21330.645463711524,
+   "achievable_gain": 57174.691928604174,
+   "regret_share": 1.5046034730721294
+  },
+  {
+   "seed": 17,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 21604.492984957353,
+   "true_value": 43090.10159893801,
+   "achievable_gain": 57174.691928604174,
+   "regret_share": 0.3778681136041023
+  },
+  {
+   "seed": 17,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 23402.874211371003,
+   "true_value": 41291.72037252436,
+   "achievable_gain": 57174.691928604174,
+   "regret_share": 0.40932226168520336
+  },
+  {
+   "seed": 17,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 158645.21122221183,
+   "true_value": -93950.61663831648,
+   "achievable_gain": 57174.691928604174,
+   "regret_share": 2.7747453614672217
+  },
+  {
+   "seed": 18,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 58983.83914015391,
+   "true_value": 80434.6464782725,
+   "achievable_gain": 58983.83914015391,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 18,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 27355.82614726515,
+   "true_value": 112062.65947116126,
+   "achievable_gain": 58983.83914015391,
+   "regret_share": 0.4637851070064099
+  },
+  {
+   "seed": 18,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 42677.3383674409,
+   "true_value": 96741.14725098551,
+   "achievable_gain": 58983.83914015391,
+   "regret_share": 0.7235429058124468
+  },
+  {
+   "seed": 18,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 51544.45492772995,
+   "true_value": 87874.03069069645,
+   "achievable_gain": 58983.83914015391,
+   "regret_share": 0.8738741946798863
+  },
+  {
+   "seed": 18,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 42926.5289636954,
+   "true_value": 96491.95665473101,
+   "achievable_gain": 58983.83914015391,
+   "regret_share": 0.7277676324475237
+  },
+  {
+   "seed": 19,
+   "regime": "collinear",
+   "plan": "current",
+   "regret": 94564.19468485887,
+   "true_value": 200503.35944937388,
+   "achievable_gain": 94564.19468485887,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 19,
+   "regime": "collinear",
+   "plan": "bayes_default",
+   "regret": 198213.72766263335,
+   "true_value": 96853.8264715994,
+   "achievable_gain": 94564.19468485887,
+   "regret_share": 2.096075880762196
+  },
+  {
+   "seed": 19,
+   "regime": "collinear",
+   "plan": "bayes_dag",
+   "regret": 157213.15578655343,
+   "true_value": 137854.39834767932,
+   "achievable_gain": 94564.19468485887,
+   "regret_share": 1.6625019259189608
+  },
+  {
+   "seed": 19,
+   "regime": "collinear",
+   "plan": "bayes_dag_calibrated",
+   "regret": 151806.39343010134,
+   "true_value": 143261.1607041314,
+   "achievable_gain": 94564.19468485887,
+   "regret_share": 1.6053263493228669
+  },
+  {
+   "seed": 19,
+   "regime": "collinear",
+   "plan": "last_click",
+   "regret": 113201.03634196572,
+   "true_value": 181866.51779226703,
+   "achievable_gain": 94564.19468485887,
+   "regret_share": 1.197081376510584
+  },
+  {
+   "seed": 20,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 49328.21696301242,
+   "true_value": -20110.324833223895,
+   "achievable_gain": 49328.21696301242,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 20,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 30073.06232047078,
+   "true_value": -855.1701906822564,
+   "achievable_gain": 49328.21696301242,
+   "regret_share": 0.6096523282611319
+  },
+  {
+   "seed": 20,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 25413.338119728454,
+   "true_value": 3804.55401006007,
+   "achievable_gain": 49328.21696301242,
+   "regret_share": 0.5151886624806252
+  },
+  {
+   "seed": 20,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 17977.7465860867,
+   "true_value": 11240.145543701823,
+   "achievable_gain": 49328.21696301242,
+   "regret_share": 0.36445157949996215
+  },
+  {
+   "seed": 20,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 53724.59917361176,
+   "true_value": -24506.707043823233,
+   "achievable_gain": 49328.21696301242,
+   "regret_share": 1.0891250988028993
+  },
+  {
+   "seed": 21,
+   "regime": "standard",
+   "plan": "current",
+   "regret": 77395.76472789768,
+   "true_value": -135627.79274686187,
+   "achievable_gain": 77395.76472789768,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 21,
+   "regime": "standard",
+   "plan": "bayes_default",
+   "regret": 23682.067132113873,
+   "true_value": -81914.09515107807,
+   "achievable_gain": 77395.76472789768,
+   "regret_share": 0.305986602953967
+  },
+  {
+   "seed": 21,
+   "regime": "standard",
+   "plan": "bayes_dag",
+   "regret": 2381.6402368022245,
+   "true_value": -60613.668255766424,
+   "achievable_gain": 77395.76472789768,
+   "regret_share": 0.030772229529295557
+  },
+  {
+   "seed": 21,
+   "regime": "standard",
+   "plan": "bayes_dag_calibrated",
+   "regret": 2216.6726906644326,
+   "true_value": -60448.70070962863,
+   "achievable_gain": 77395.76472789768,
+   "regret_share": 0.02864074925104296
+  },
+  {
+   "seed": 21,
+   "regime": "standard",
+   "plan": "last_click",
+   "regret": 42320.62846565508,
+   "true_value": -100552.65648461928,
+   "achievable_gain": 77395.76472789768,
+   "regret_share": 0.5468080664935971
+  },
+  {
+   "seed": 22,
+   "regime": "collinear",
+   "plan": "current",
+   "regret": 259928.1658684364,
+   "true_value": 345268.7485399467,
+   "achievable_gain": 259928.1658684364,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 22,
+   "regime": "collinear",
+   "plan": "bayes_default",
+   "regret": 9187.647970619611,
+   "true_value": 596009.2664377635,
+   "achievable_gain": 259928.1658684364,
+   "regret_share": 0.035346873394513055
+  },
+  {
+   "seed": 22,
+   "regime": "collinear",
+   "plan": "bayes_dag",
+   "regret": 11534.317829018808,
+   "true_value": 593662.5965793643,
+   "achievable_gain": 259928.1658684364,
+   "regret_share": 0.044375021038916364
+  },
+  {
+   "seed": 22,
+   "regime": "collinear",
+   "plan": "bayes_dag_calibrated",
+   "regret": 11534.317829018808,
+   "true_value": 593662.5965793643,
+   "achievable_gain": 259928.1658684364,
+   "regret_share": 0.044375021038916364
+  },
+  {
+   "seed": 22,
+   "regime": "collinear",
+   "plan": "last_click",
+   "regret": 288202.41206290835,
+   "true_value": 316994.5023454747,
+   "achievable_gain": 259928.1658684364,
+   "regret_share": 1.1087771542572384
+  },
+  {
+   "seed": 23,
+   "regime": "weak_signal",
+   "plan": "current",
+   "regret": 17800.995838970004,
+   "true_value": -129724.53181351328,
+   "achievable_gain": 17800.995838970004,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 23,
+   "regime": "weak_signal",
+   "plan": "bayes_default",
+   "regret": 19328.12850068047,
+   "true_value": -131251.66447522375,
+   "achievable_gain": 17800.995838970004,
+   "regret_share": 1.0857891701972797
+  },
+  {
+   "seed": 23,
+   "regime": "weak_signal",
+   "plan": "bayes_dag",
+   "regret": 9163.707102666114,
+   "true_value": -121087.2430772094,
+   "achievable_gain": 17800.995838970004,
+   "regret_share": 0.5147862055337878
+  },
+  {
+   "seed": 23,
+   "regime": "weak_signal",
+   "plan": "bayes_dag_calibrated",
+   "regret": 11151.069644149,
+   "true_value": -123074.60561869228,
+   "achievable_gain": 17800.995838970004,
+   "regret_share": 0.6264295405168872
+  },
+  {
+   "seed": 23,
+   "regime": "weak_signal",
+   "plan": "last_click",
+   "regret": 25431.354407418024,
+   "true_value": -137354.8903819613,
+   "achievable_gain": 17800.995838970004,
+   "regret_share": 1.428647848551462
+  },
+  {
+   "seed": 24,
+   "regime": "weak_signal",
+   "plan": "current",
+   "regret": 17585.215041518037,
+   "true_value": -134248.90318803588,
+   "achievable_gain": 17585.215041518037,
+   "regret_share": 1.0
+  },
+  {
+   "seed": 24,
+   "regime": "weak_signal",
+   "plan": "bayes_default",
+   "regret": 21183.655880273494,
+   "true_value": -137847.34402679134,
+   "achievable_gain": 17585.215041518037,
+   "regret_share": 1.2046287651450194
+  },
+  {
+   "seed": 24,
+   "regime": "weak_signal",
+   "plan": "bayes_dag",
+   "regret": 7144.932547732911,
+   "true_value": -123808.62069425076,
+   "achievable_gain": 17585.215041518037,
+   "regret_share": 0.4063033935532771
+  },
+  {
+   "seed": 24,
+   "regime": "weak_signal",
+   "plan": "bayes_dag_calibrated",
+   "regret": 6365.882983363917,
+   "true_value": -123029.57112988176,
+   "achievable_gain": 17585.215041518037,
+   "regret_share": 0.36200199817484774
+  },
+  {
+   "seed": 24,
+   "regime": "weak_signal",
+   "plan": "last_click",
+   "regret": 46887.507053100824,
+   "true_value": -163551.19519961867,
+   "achievable_gain": 17585.215041518037,
+   "regret_share": 2.6663027402508965
+  }
+ ],
+ "convergence": [
+  {
+   "variant": "bayes_dag",
+   "converged": 0.8333333333333334,
+   "rhat_max_median": 1.0058215757339397,
+   "divergent_fits": 0
+  },
+  {
+   "variant": "bayes_dag_calibrated",
+   "converged": 0.7916666666666666,
+   "rhat_max_median": 1.007328640303942,
+   "divergent_fits": 0
+  },
+  {
+   "variant": "bayes_default",
+   "converged": 0.9583333333333334,
+   "rhat_max_median": 1.0046152907508303,
+   "divergent_fits": 0
+  }
+ ],
+ "geolift": {
+  "coverage90": 0.9583333333333334,
+  "mean_abs_error": 10582.890342172903,
+  "mean_se": 18191.817659797332,
+  "tested_channels": {
+   "meta_prospecting": 12,
+   "search_nonbrand": 8,
+   "search_brand": 2,
+   "tiktok": 2
+  }
+ },
+ "calibration_effect_on_tested_channel": {
+  "mean_error_before": 0.6314666961464738,
+  "mean_error_after": 0.44939191652825333,
+  "share_improved": 0.7916666666666666
+ },
+ "failures": [
+  {
+   "seed": 5,
+   "regime": "standard",
+   "what": "calibrated-MMM plan worse than current plan (true)",
+   "regret": 43745.735515335895,
+   "regret_current": 27938.302385422372
+  },
+  {
+   "seed": 19,
+   "regime": "collinear",
+   "what": "calibrated-MMM plan worse than current plan (true)",
+   "regret": 151806.39343010134,
+   "regret_current": 94564.19468485887
+  }
+ ],
+ "failed_worlds": []
+}

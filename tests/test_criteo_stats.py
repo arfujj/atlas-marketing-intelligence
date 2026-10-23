@@ -13,6 +13,7 @@ from atlas.criteo import (
     mde,
     qini_coefficient,
     qini_curve,
+    rank_order,
     required_n,
     srm_test,
     two_proportion,
@@ -71,3 +72,21 @@ def test_qini_perfect_score_beats_random():
     ev = evaluate_uplift(models, x, t, y, n_boot=20, seed=0)
     for learner in ("s_learner", "t_learner", "x_learner"):
         assert ev[learner]["qini_coefficient_ci95"][0] > ev["random"]["qini_coefficient"]
+
+
+def test_tied_scores_do_not_bend_the_qini_curve_when_input_is_sorted_by_treatment():
+    # Constant score = no targeting information, so the curve must follow the random line,
+    # even though the input lists every treated user before every control user.
+    rng = np.random.default_rng(3)
+    n = 40_000
+    t = np.r_[np.ones(n // 2), np.zeros(n // 2)]
+    y = (rng.random(n) < 0.05 + 0.02 * t).astype(float)
+    score = np.zeros(n)
+    frac, q = qini_curve(score, t, y, order=rank_order(score, rng))
+    _, q_stable = qini_curve(score, t, y)  # input order: the failure this guards against
+
+    def max_gap(curve):  # largest distance from the random-targeting line
+        return float(np.max(np.abs(curve - frac * curve[-1])))
+
+    assert max_gap(q) < 0.1 * q[-1]
+    assert max_gap(q_stable) > 0.3 * q_stable[-1]

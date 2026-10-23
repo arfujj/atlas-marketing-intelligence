@@ -213,9 +213,19 @@ def qini_coefficient(frac: np.ndarray, q: np.ndarray) -> float:
     return float(np.trapezoid(q - random_line, frac))
 
 
-def uplift_at(score: np.ndarray, t: np.ndarray, y: np.ndarray, top: float) -> float:
+def rank_order(score: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+    """Descending score order with ties broken at random.
+
+    A stable sort would keep tied users in input order; if the input is grouped by treatment,
+    a block of tied scores then comes out treated-first and bends the Qini curve (seen with
+    the X-learner, whose regression trees produce large tie blocks)."""
+    return np.lexsort((rng.random(len(score)), -score))
+
+
+def uplift_at(score: np.ndarray, t: np.ndarray, y: np.ndarray, top: float,
+              order: np.ndarray | None = None) -> float:
     k = int(len(score) * top)
-    sel = np.argsort(-score, kind="stable")[:k]
+    sel = (np.argsort(-score, kind="stable") if order is None else order)[:k]
     tt, yy = t[sel], y[sel]
     return float(yy[tt == 1].mean() - yy[tt == 0].mean())
 
@@ -226,7 +236,7 @@ def evaluate_uplift(models: dict, x: np.ndarray, t: np.ndarray, y: np.ndarray,
     out = {}
     scores = {name: f(x) for name, f in models.items()}
     scores["random"] = rng.random(len(x))
-    orders = {name: np.argsort(-sc, kind="stable") for name, sc in scores.items()}
+    orders = {name: rank_order(sc, rng) for name, sc in scores.items()}
     boot_coefs: dict[str, list[float]] = {name: [] for name in scores}
     for _ in range(n_boot):  # Poisson bootstrap: one weight vector shared by all learners
         wb = rng.poisson(1.0, size=len(x)).astype(np.float64)
@@ -241,9 +251,9 @@ def evaluate_uplift(models: dict, x: np.ndarray, t: np.ndarray, y: np.ndarray,
             "qini_coefficient": coef,
             "qini_coefficient_ci95": ([float(np.percentile(bs, 2.5)),
                                        float(np.percentile(bs, 97.5))] if bs else None),
-            "uplift_top10": uplift_at(sc, t, y, 0.10),
-            "uplift_top20": uplift_at(sc, t, y, 0.20),
-            "uplift_top30": uplift_at(sc, t, y, 0.30),
+            "uplift_top10": uplift_at(sc, t, y, 0.10, orders[name]),
+            "uplift_top20": uplift_at(sc, t, y, 0.20, orders[name]),
+            "uplift_top30": uplift_at(sc, t, y, 0.30, orders[name]),
             "curve": {"fraction": frac.round(4).tolist(), "qini": q.tolist()},
         }
     return out
