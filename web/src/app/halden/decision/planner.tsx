@@ -107,7 +107,7 @@ export function Planner({ initial }: { initial: OptimizationResult }) {
           <input type="checkbox" checked={!spendAll} onChange={(e) => setSpendAll(!e.target.checked)} />
           Allow spending less than the budget
         </label>
-        <button disabled={pending || !dirty} className="rounded bg-accent px-4 py-2 text-sm font-medium text-white disabled:opacity-40">
+        <button disabled={pending || !dirty} className="rounded bg-accent-fill px-4 py-2 text-sm font-medium text-white disabled:opacity-40">
           {pending ? "Optimising…" : "Re-optimise"}
         </button>
         <span className="text-muted">Channel limits: 50%–150% of current spend, scaled to the budget.</span>

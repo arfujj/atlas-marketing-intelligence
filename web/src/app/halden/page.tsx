@@ -110,7 +110,7 @@ async function render(sp: SP) {
               ))}
             </select>
           </label>
-          <button className="rounded bg-accent px-3 py-1.5 font-medium text-white">Apply</button>
+          <button className="rounded bg-accent-fill px-3 py-1.5 font-medium text-white">Apply</button>
         </form>
       </PageHeader>
 

@@ -50,9 +50,8 @@ async function Content({ searchParams }: PageProps<"/halden/evidence">) {
         <Link
           href={truth ? "/halden/evidence" : "/halden/evidence?truth=1"}
           className={`rounded-md border px-3 py-1.5 text-sm font-medium ${
-            truth ? "border-accent bg-accent text-white" : "border-line bg-surface text-ink"
+            truth ? "border-accent-fill bg-accent-fill text-white" : "border-line bg-surface text-ink"
           }`}
-          aria-pressed={truth}
         >
           {truth ? "Hide truth" : "Reveal truth"}
         </Link>
